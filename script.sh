@@ -40,21 +40,27 @@ if [ "$nbFichierImg" -gt 0 ]
 then
     # Lancer container docker
 
-    docker run -dit --name imagick bigpapoo/sae103-imagick bash
+    docker run -dit --name imagick bigpapoo/sae103-imagick
 
-    for fichier in *.xlsx
+    docker container cp scripts/conversionImage.php imagick:"/data/conversionImage.php"
+
+    for chemin in fichiers/*.png fichiers/*.jpeg fichiers/*.jpg fichiers/*.webp
     do
-        if [ -f "$fichier" ]
+        if [ -f "$chemin" ]
         then
             # Récupérer fichier sans dossier
             nomFichier="$(basename "$chemin")"
-
-            docker container cp "$chemin" excel2csv:"/app/$nomFichier"
-            docker container exec -it excel2csv ssconvert "$fichier" "$nomFichierCsv"
-            docker container cp excel2csv:"/app/$nomFichierCsv" "$nomFichierCsv"
+            # Récupérer fichier avec extension webp
+            nomFichierWebp="${nomFichier%.*}.webp"
+            
+            docker container cp "$chemin" imagick:"/data/$nomFichier"
+            docker container exec -it imagick php /data/conversionImage.php "$nomFichier"
+            docker container cp imagick:"/data/$nomFichierWebp" utilisables/"$nomFichierWebp"
         fi
     done
 
-    docker container stop excel2csv
-    docker container rm excel2csv
+    
+
+    docker container stop imagick
+    docker container rm imagick
 fi

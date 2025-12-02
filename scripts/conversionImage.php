@@ -1,30 +1,37 @@
-
 <?php
-list($width, $height, $type, $attr) = getimagesize("image.jpg");
-echo "Dimensions: $width x $height";
+const MAX_TAILLE = 180000; // 18 ko
 
-/*
-- Fichier bash
-    Récupérer dernière image imagick
-    Lancer conteneur en éhpémère
-    Copier tous (ou seulement les images ??) les fichiers dans ce conteneur
-    Copier le script php
-    Lancer le script php
+const MIN_LARGEUR = 350;
+const MIN_HAUTEUR = 250;
 
-- Script php images
-    Pour toutes les images
-        Récupérer dimensions image
-        Si image trop grande et ratio faisable
-            Redimensionner image
-        
-        Récupérer taille fichier
-        Si fichier trop lourd
-            Compresser fichier
+const MAX_LARGEUR = 900;
+const MAX_HAUTEUR = 620;
 
-        Récupérer type de fichier
-        Si pas WebP
-            Conversion vers WebP
-        
-        Copier fichier en dehors du conteneur
-*/
-?>
+const TYPE_WEBP = 18;
+
+$nomFichier = $argv[1];
+
+// Récupérer les dimensions
+list($width, $height, $type, $attr) = getimagesize($nomFichier);
+
+if($width > MAX_LARGEUR || $height > MAX_HAUTEUR){
+    // Commande pour redimensionner
+    //exec("");
+    
+}
+
+if(filesize($nomFichier) > MAX_TAILLE){
+    // Commande pour optimiser taille
+    //exec("");
+    
+}
+
+if($type != TYPE_WEBP){
+    // Commande pour changer format en webp
+    //exec("");
+    
+}
+
+echo "Dimensions: $width x $height\n";
+echo "Taille: " . filesize($nomFichier)."\n";
+echo "Type: " . $type."\n\n";
