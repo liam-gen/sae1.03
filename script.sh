@@ -6,6 +6,16 @@ docker image pull bigpapoo/sae103-imagick
 docker image pull bigpapoo/sae103-excel2csv
 docker image pull bigpapoo/sae103-html2pdf
 
+# création du dossier utilisables si il n'existe pas 
+repertoire="utilisables"
+
+if [ ! -d "$repertoire" ]
+then
+    echo "creation du dossier : $repertoire"
+    mkdir $repertoire
+    echo "done"
+fi
+
 # Récupérer tous les excel
 
 nbFichierExcel=$(ls fichiers/*.xlsx | wc -l)
