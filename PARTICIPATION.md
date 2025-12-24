@@ -16,4 +16,6 @@ Temps total : XX H (ou YY min)
 etc.
 
 titouan : 
-automatisation csv Etape (B-1 ) 3h
+automatisation csv Etape (B-1 ) 
+(voir changelog)
+5h
