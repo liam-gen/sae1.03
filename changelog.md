@@ -1,3 +1,8 @@
+## 04/01/2026
+(titouan)
+tableau en num dep et leur nom (encore bug sur corse)
+tentative fix lien entre les 2 tab
+
 ## 24/12/2025 
 (titouan)
 tri du fichier csv par departement 
