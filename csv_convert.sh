@@ -26,7 +26,8 @@ then
             
             # traitement (suppression du titre et en-tete)
             echo "Traitement de $nomFichierCsv ..."
-            echo "Suppresion du titre de $nomFichierCsv"
+            echo " "
+            echo "Suppresion du titre de $nomFichierCsv ..."
             docker container exec excel2csv bash -c "
                 if [ -f \"/app/$nomFichierCsv\" ]
                 then
@@ -39,15 +40,19 @@ then
                     fi
                 fi
             "
-            echo "done"
+            echo "Ok"
             
             
             # tri par numero de département 
-            echo "tri des donnees"
+            echo "Tri des données ..."
+
             docker container exec excel2csv bash -c "
             sort -n -t',' -k 2 $nomFichierCsv > temp.csv
             mv temp.csv $nomFichierCsv"
-            echo "lancement script php"
+
+            echo "Ok"
+
+            echo "Lancement script php ..."
             docker container exec -it excel2csv php /app/csv_convert.php "$nomFichier" DEPTS
             echo "Traitement terminé : $nomFichierCsv"
         fi

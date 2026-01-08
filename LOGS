@@ -1,0 +1,853 @@
+6952a87979e438a744f92c8f4da12b70960bd79e799bb32021d226b6aa04bf24
+Traitement de sites_touristiques_france-v2.csv ...
+ 
+Suppresion du titre de sites_touristiques_france-v2.csv ...
+Ok
+Tri des données ...
+Ok
+Lancement script php ...
+
+tableau de département ... 
+Array
+(
+    [Ain] => 01
+    [Aisne] => 02
+    [Allier] => 03
+    [Alpes-de-Haute-Provence] => 04
+    [Hautes-Alpes] => 05
+    [Alpes-Maritimes] => 06
+    [Ardeche] => 07
+    [Ardennes] => 08
+    [Ariege] => 09
+    [Aube] => 10
+    [Aude] => 11
+    [Aveyron] => 12
+    [Bouches-du-Rhone] => 13
+    [Calvados] => 14
+    [Cantal] => 15
+    [Charente] => 16
+    [Charente-Maritime] => 17
+    [Cher] => 18
+    [Correze] => 19
+    [Corse-du-Sud] => 2A
+    [Haute-Corse] => 2B
+    [Cote-d'Or] => 21
+    [Cotes-d'Armor] => 22
+    [Creuse] => 23
+    [Dordogne] => 24
+    [Doubs] => 25
+    [Drome] => 26
+    [Eure] => 27
+    [Eure-et-Loir] => 28
+    [Finistere] => 29
+    [Gard] => 30
+    [Haute-Garonne] => 31
+    [Gers] => 32
+    [Gironde] => 33
+    [Herault] => 34
+    [Ille-et-Vilaine] => 35
+    [Indre] => 36
+    [Indre-et-Loire] => 37
+    [Isere] => 38
+    [Jura] => 39
+    [Landes] => 40
+    [Loir-et-Cher] => 41
+    [Loire] => 42
+    [Haute-Loire] => 43
+    [Loire-Atlantique] => 44
+    [Loiret] => 45
+    [Lot] => 46
+    [Lot-et-Garonne] => 47
+    [Lozere] => 48
+    [Maine-et-Loire] => 49
+    [Manche] => 50
+    [Marne] => 51
+    [Haute-Marne] => 52
+    [Mayenne] => 53
+    [Meurthe-et-Moselle] => 54
+    [Meuse] => 55
+    [Morbihan] => 56
+    [Moselle] => 57
+    [Nievre] => 58
+    [Nord] => 59
+    [Oise] => 60
+    [Orne] => 61
+    [Pas-de-Calais] => 62
+    [Puy-de-Dome] => 63
+    [Pyrenees-Atlantiques] => 64
+    [Hautes-Pyrenees] => 65
+    [Pyrenees-Orientales] => 66
+    [Bas-Rhin] => 67
+    [Haut-Rhin] => 68
+    [Rhone] => 69
+    [Haute-Saone] => 70
+    [Saone-et-Loire] => 71
+    [Sarthe] => 72
+    [Savoie] => 73
+    [Haute-Savoie] => 74
+    [Paris] => 75
+    [Seine-Maritime] => 76
+    [Seine-et-Marne] => 77
+    [Yvelines] => 78
+    [Deux-Sevres] => 79
+    [Somme] => 80
+    [Tarn] => 81
+    [Tarn-et-Garonne] => 82
+    [Var] => 83
+    [Vaucluse] => 84
+    [Vendee] => 85
+    [Vienne] => 86
+    [Haute-Vienne] => 87
+    [Vosges] => 88
+    [Yonne] => 89
+    [Territoire de Belfort] => 90
+    [Essonne] => 91
+    [Hauts-de-Seine] => 92
+    [Seine-Saint-Denis] => 93
+    [Val-de-Marne] => 94
+    [Val-d'Oise] => 95
+)
+
+tableau des sites touristiques ... 
+ Array
+(
+    [0] => Array
+        (
+            [nom] => Réserve naturelle de Scandola
+            [departement] => 2A
+            [nom_departement] => Corse-du-Sud
+            [nombre_visiteurs] => 200
+        )
+
+    [1] => Array
+        (
+            [nom] => Îles Lavezzi
+            [departement] => 2B
+            [nom_departement] => Haute-Corse
+            [nombre_visiteurs] => 350
+        )
+
+    [2] => Array
+        (
+            [nom] => Citadelle de Sisteron
+            [departement] => 04
+            [nom_departement] => Alpes-de-Haute-Provence
+            [nombre_visiteurs] => 180
+        )
+
+    [3] => Array
+        (
+            [nom] => Parc national des Écrins
+            [departement] => 05
+            [nom_departement] => Hautes-Alpes
+            [nombre_visiteurs] => 950
+        )
+
+    [4] => Array
+        (
+            [nom] => Musée Matisse
+            [departement] => 06
+            [nom_departement] => Alpes-Maritimes
+            [nombre_visiteurs] => 300
+        )
+
+    [5] => Array
+        (
+            [nom] => Palais idéal du facteur Cheval
+            [departement] => 07
+            [nom_departement] => Ardeche
+            [nombre_visiteurs] => 150
+        )
+
+    [6] => Array
+        (
+            [nom] => Place Ducale de Charleville-Mézières
+            [departement] => 08
+            [nom_departement] => Ardennes
+            [nombre_visiteurs] => 200
+        )
+
+    [7] => Array
+        (
+            [nom] => Château de Foix
+            [departement] => 09
+            [nom_departement] => Ariege
+            [nombre_visiteurs] => 120
+        )
+
+    [8] => Array
+        (
+            [nom] => Lac du Der-Chantecoat
+            [departement] => 10
+            [nom_departement] => Aube
+            [nombre_visiteurs] => 500
+        )
+
+    [9] => Array
+        (
+            [nom] => Cité de Carcassonne
+            [departement] => 11
+            [nom_departement] => Aude
+            [nombre_visiteurs] => 2000
+        )
+
+    [10] => Array
+        (
+            [nom] => Parc naturel régional de la Narbonnaise
+            [departement] => 11
+            [nom_departement] => Aude
+            [nombre_visiteurs] => 800
+        )
+
+    [11] => Array
+        (
+            [nom] => Cathédrale Saint-Jean
+            [departement] => 12
+            [nom_departement] => Aveyron
+            [nombre_visiteurs] => 250
+        )
+
+    [12] => Array
+        (
+            [nom] => Viaduc de Millau
+            [departement] => 12
+            [nom_departement] => Aveyron
+            [nombre_visiteurs] => 400
+        )
+
+    [13] => Array
+        (
+            [nom] => Calanques de Marseille
+            [departement] => 13
+            [nom_departement] => Bouches-du-Rhone
+            [nombre_visiteurs] => 3500
+        )
+
+    [14] => Array
+        (
+            [nom] => Pont d'Avignon
+            [departement] => 13
+            [nom_departement] => Bouches-du-Rhone
+            [nombre_visiteurs] => 400
+        )
+
+    [15] => Array
+        (
+            [nom] => Plages du Débarquement
+            [departement] => 14
+            [nom_departement] => Calvados
+            [nombre_visiteurs] => 4500
+        )
+
+    [16] => Array
+        (
+            [nom] => Puy Mary
+            [departement] => 15
+            [nom_departement] => Cantal
+            [nombre_visiteurs] => 600
+        )
+
+    [17] => Array
+        (
+            [nom] => Cognac - Maisons de cognac
+            [departement] => 16
+            [nom_departement] => Charente
+            [nombre_visiteurs] => 350
+        )
+
+    [18] => Array
+        (
+            [nom] => Fort Boyard
+            [departement] => 17
+            [nom_departement] => Charente-Maritime
+            [nombre_visiteurs] => 180
+        )
+
+    [19] => Array
+        (
+            [nom] => Cathédrale de Bourges
+            [departement] => 18
+            [nom_departement] => Cher
+            [nombre_visiteurs] => 300
+        )
+
+    [20] => Array
+        (
+            [nom] => Gouffre de Padirac
+            [departement] => 19
+            [nom_departement] => Correze
+            [nombre_visiteurs] => 450
+        )
+
+    [21] => Array
+        (
+            [nom] => Château de Fougères
+            [departement] => 21
+            [nom_departement] => Cote-d'Or
+            [nombre_visiteurs] => 200
+        )
+
+    [22] => Array
+        (
+            [nom] => Côte de Granit Rose
+            [departement] => 22
+            [nom_departement] => Cotes-d'Armor
+            [nombre_visiteurs] => 1500
+        )
+
+    [23] => Array
+        (
+            [nom] => Tapisseries d'Aubusson
+            [departement] => 23
+            [nom_departement] => Creuse
+            [nombre_visiteurs] => 80
+        )
+
+    [24] => Array
+        (
+            [nom] => Grotte de Lascaux IV
+            [departement] => 24
+            [nom_departement] => Dordogne
+            [nombre_visiteurs] => 400
+        )
+
+    [25] => Array
+        (
+            [nom] => Citadelle de Besançon
+            [departement] => 25
+            [nom_departement] => Doubs
+            [nombre_visiteurs] => 280
+        )
+
+    [26] => Array
+        (
+            [nom] => Palais idéal du facteur Cheval
+            [departement] => 26
+            [nom_departement] => Drome
+            [nombre_visiteurs] => 150
+        )
+
+    [27] => Array
+        (
+            [nom] => Abbaye du Mont-Saint-Michel
+            [departement] => 27
+            [nom_departement] => Eure
+            [nombre_visiteurs] => 350
+        )
+
+    [28] => Array
+        (
+            [nom] => Cathédrale de Chartres
+            [departement] => 28
+            [nom_departement] => Eure-et-Loir
+            [nombre_visiteurs] => 1500
+        )
+
+    [29] => Array
+        (
+            [nom] => Pointe du Raz
+            [departement] => 29
+            [nom_departement] => Finistere
+            [nombre_visiteurs] => 1200
+        )
+
+    [30] => Array
+        (
+            [nom] => Pont du Gard
+            [departement] => 30
+            [nom_departement] => Gard
+            [nombre_visiteurs] => 1400
+        )
+
+    [31] => Array
+        (
+            [nom] => Basilique Saint-Sernin
+            [departement] => 31
+            [nom_departement] => Haute-Garonne
+            [nombre_visiteurs] => 800
+        )
+
+    [32] => Array
+        (
+            [nom] => Sanctuaire de Lourdes
+            [departement] => 32
+            [nom_departement] => Gers
+            [nombre_visiteurs] => 6000
+        )
+
+    [33] => Array
+        (
+            [nom] => Dune du Pilat
+            [departement] => 33
+            [nom_departement] => Gironde
+            [nombre_visiteurs] => 2100
+        )
+
+    [34] => Array
+        (
+            [nom] => Grotte de Clamouse
+            [departement] => 34
+            [nom_departement] => Herault
+            [nombre_visiteurs] => 200
+        )
+
+    [35] => Array
+        (
+            [nom] => Saint-Malo intra-muros
+            [departement] => 35
+            [nom_departement] => Ille-et-Vilaine
+            [nombre_visiteurs] => 3000
+        )
+
+    [36] => Array
+        (
+            [nom] => Château de Chenonceau
+            [departement] => 37
+            [nom_departement] => Indre-et-Loire
+            [nombre_visiteurs] => 850
+        )
+
+    [37] => Array
+        (
+            [nom] => Grande Mosquée de Lyon
+            [departement] => 38
+            [nom_departement] => Isere
+            [nombre_visiteurs] => 400
+        )
+
+    [38] => Array
+        (
+            [nom] => Parc naturel du Haut-Jura
+            [departement] => 39
+            [nom_departement] => Jura
+            [nombre_visiteurs] => 600
+        )
+
+    [39] => Array
+        (
+            [nom] => Dune du Pilat - Plages
+            [departement] => 40
+            [nom_departement] => Landes
+            [nombre_visiteurs] => 1800
+        )
+
+    [40] => Array
+        (
+            [nom] => Château de Chambord
+            [departement] => 41
+            [nom_departement] => Loir-et-Cher
+            [nombre_visiteurs] => 1000
+        )
+
+    [41] => Array
+        (
+            [nom] => Basilique Notre-Dame de Fourvière
+            [departement] => 42
+            [nom_departement] => Loire
+            [nombre_visiteurs] => 2500
+        )
+
+    [42] => Array
+        (
+            [nom] => Le Puy-en-Velay
+            [departement] => 43
+            [nom_departement] => Haute-Loire
+            [nombre_visiteurs] => 400
+        )
+
+    [43] => Array
+        (
+            [nom] => Machines de l'île
+            [departement] => 44
+            [nom_departement] => Loire-Atlantique
+            [nombre_visiteurs] => 650
+        )
+
+    [44] => Array
+        (
+            [nom] => Cathédrale Sainte-Croix d'Orléans
+            [departement] => 45
+            [nom_departement] => Loiret
+            [nombre_visiteurs] => 300
+        )
+
+    [45] => Array
+        (
+            [nom] => Parc naturel des Causses du Quercy
+            [departement] => 46
+            [nom_departement] => Lot
+            [nombre_visiteurs] => 350
+        )
+
+    [46] => Array
+        (
+            [nom] => Agen et sa région
+            [departement] => 47
+            [nom_departement] => Lot-et-Garonne
+            [nombre_visiteurs] => 180
+        )
+
+    [47] => Array
+        (
+            [nom] => Gorges du Tarn
+            [departement] => 48
+            [nom_departement] => Lozere
+            [nombre_visiteurs] => 800
+        )
+
+    [48] => Array
+        (
+            [nom] => Mont-Saint-Michel
+            [departement] => 50
+            [nom_departement] => Manche
+            [nombre_visiteurs] => 3000
+        )
+
+    [49] => Array
+        (
+            [nom] => Cathédrale de Reims
+            [departement] => 51
+            [nom_departement] => Marne
+            [nombre_visiteurs] => 1500
+        )
+
+    [50] => Array
+        (
+            [nom] => Lac du Der
+            [departement] => 52
+            [nom_departement] => Haute-Marne
+            [nombre_visiteurs] => 500
+        )
+
+    [51] => Array
+        (
+            [nom] => Basilique d'Évron
+            [departement] => 53
+            [nom_departement] => Mayenne
+            [nombre_visiteurs] => 120
+        )
+
+    [52] => Array
+        (
+            [nom] => Place Stanislas
+            [departement] => 54
+            [nom_departement] => Meurthe-et-Moselle
+            [nombre_visiteurs] => 4000
+        )
+
+    [53] => Array
+        (
+            [nom] => Verdun - Champs de bataille
+            [departement] => 55
+            [nom_departement] => Meuse
+            [nombre_visiteurs] => 800
+        )
+
+    [54] => Array
+        (
+            [nom] => Golfe du Morbihan
+            [departement] => 56
+            [nom_departement] => Morbihan
+            [nombre_visiteurs] => 2500
+        )
+
+    [55] => Array
+        (
+            [nom] => Cathédrale de Metz
+            [departement] => 57
+            [nom_departement] => Moselle
+            [nombre_visiteurs] => 600
+        )
+
+    [56] => Array
+        (
+            [nom] => Parc du Morvan
+            [departement] => 58
+            [nom_departement] => Nievre
+            [nombre_visiteurs] => 450
+        )
+
+    [57] => Array
+        (
+            [nom] => Vieux-Lille
+            [departement] => 59
+            [nom_departement] => Nord
+            [nombre_visiteurs] => 5000
+        )
+
+    [58] => Array
+        (
+            [nom] => Parc Astérix
+            [departement] => 60
+            [nom_departement] => Oise
+            [nombre_visiteurs] => 2300
+        )
+
+    [59] => Array
+        (
+            [nom] => Basilique Sainte-Thérèse
+            [departement] => 61
+            [nom_departement] => Orne
+            [nombre_visiteurs] => 400
+        )
+
+    [60] => Array
+        (
+            [nom] => Notre-Dame-de-Lorette
+            [departement] => 62
+            [nom_departement] => Pas-de-Calais
+            [nombre_visiteurs] => 300
+        )
+
+    [61] => Array
+        (
+            [nom] => Vulcania
+            [departement] => 63
+            [nom_departement] => Puy-de-Dome
+            [nombre_visiteurs] => 450
+        )
+
+    [62] => Array
+        (
+            [nom] => Grottes de Bétharram
+            [departement] => 64
+            [nom_departement] => Pyrenees-Atlantiques
+            [nombre_visiteurs] => 180
+        )
+
+    [63] => Array
+        (
+            [nom] => Parc national des Pyrénées
+            [departement] => 65
+            [nom_departement] => Hautes-Pyrenees
+            [nombre_visiteurs] => 850
+        )
+
+    [64] => Array
+        (
+            [nom] => Palais des rois de Majorque
+            [departement] => 66
+            [nom_departement] => Pyrenees-Orientales
+            [nombre_visiteurs] => 200
+        )
+
+    [65] => Array
+        (
+            [nom] => Cathédrale de Strasbourg
+            [departement] => 67
+            [nom_departement] => Bas-Rhin
+            [nombre_visiteurs] => 4500
+        )
+
+    [66] => Array
+        (
+            [nom] => Écomusée d'Alsace
+            [departement] => 68
+            [nom_departement] => Haut-Rhin
+            [nombre_visiteurs] => 250
+        )
+
+    [67] => Array
+        (
+            [nom] => Basilique de Fourvière
+            [departement] => 69
+            [nom_departement] => Rhone
+            [nombre_visiteurs] => 2500
+        )
+
+    [68] => Array
+        (
+            [nom] => Chapelle de Ronchamp
+            [departement] => 70
+            [nom_departement] => Haute-Saone
+            [nombre_visiteurs] => 100
+        )
+
+    [69] => Array
+        (
+            [nom] => Abbaye de Cluny
+            [departement] => 71
+            [nom_departement] => Saone-et-Loire
+            [nombre_visiteurs] => 200
+        )
+
+    [70] => Array
+        (
+            [nom] => Circuit des 24 Heures du Mans
+            [departement] => 72
+            [nom_departement] => Sarthe
+            [nombre_visiteurs] => 500
+        )
+
+    [71] => Array
+        (
+            [nom] => Lac du Bourget
+            [departement] => 73
+            [nom_departement] => Savoie
+            [nombre_visiteurs] => 1200
+        )
+
+    [72] => Array
+        (
+            [nom] => Lac d'Annecy
+            [departement] => 74
+            [nom_departement] => Haute-Savoie
+            [nombre_visiteurs] => 3000
+        )
+
+    [73] => Array
+        (
+            [nom] => Cathédrale Notre-Dame de Paris
+            [departement] => 75
+            [nom_departement] => Paris
+            [nombre_visiteurs] => 12000
+        )
+
+    [74] => Array
+        (
+            [nom] => Disneyland Paris
+            [departement] => 77
+            [nom_departement] => Seine-et-Marne
+            [nombre_visiteurs] => 15000
+        )
+
+    [75] => Array
+        (
+            [nom] => Château de Versailles
+            [departement] => 78
+            [nom_departement] => Yvelines
+            [nombre_visiteurs] => 8100
+        )
+
+    [76] => Array
+        (
+            [nom] => Marais Poitevin
+            [departement] => 79
+            [nom_departement] => Deux-Sevres
+            [nombre_visiteurs] => 900
+        )
+
+    [77] => Array
+        (
+            [nom] => Baie de Somme
+            [departement] => 80
+            [nom_departement] => Somme
+            [nombre_visiteurs] => 2000
+        )
+
+    [78] => Array
+        (
+            [nom] => Albi - Cité épiscopale
+            [departement] => 81
+            [nom_departement] => Tarn
+            [nombre_visiteurs] => 500
+        )
+
+    [79] => Array
+        (
+            [nom] => Abbaye de Moissac
+            [departement] => 82
+            [nom_departement] => Tarn-et-Garonne
+            [nombre_visiteurs] => 180
+        )
+
+    [80] => Array
+        (
+            [nom] => Port de Saint-Tropez
+            [departement] => 83
+            [nom_departement] => Var
+            [nombre_visiteurs] => 4000
+        )
+
+    [81] => Array
+        (
+            [nom] => Palais des Papes
+            [departement] => 84
+            [nom_departement] => Vaucluse
+            [nombre_visiteurs] => 650
+        )
+
+    [82] => Array
+        (
+            [nom] => Puy du Fou
+            [departement] => 85
+            [nom_departement] => Vendee
+            [nombre_visiteurs] => 2300
+        )
+
+    [83] => Array
+        (
+            [nom] => Futuroscope
+            [departement] => 86
+            [nom_departement] => Vienne
+            [nombre_visiteurs] => 1900
+        )
+
+    [84] => Array
+        (
+            [nom] => Oradour-sur-Glane
+            [departement] => 87
+            [nom_departement] => Haute-Vienne
+            [nombre_visiteurs] => 300
+        )
+
+    [85] => Array
+        (
+            [nom] => Place Stanislas
+            [departement] => 88
+            [nom_departement] => Vosges
+            [nombre_visiteurs] => 350
+        )
+
+    [86] => Array
+        (
+            [nom] => Abbaye de Pontigny
+            [departement] => 89
+            [nom_departement] => Yonne
+            [nombre_visiteurs] => 80
+        )
+
+    [87] => Array
+        (
+            [nom] => Lion de Belfort
+            [departement] => 90
+            [nom_departement] => Territoire de Belfort
+            [nombre_visiteurs] => 200
+        )
+
+    [88] => Array
+        (
+            [nom] => Château de Fontainebleau
+            [departement] => 91
+            [nom_departement] => Essonne
+            [nombre_visiteurs] => 500
+        )
+
+    [89] => Array
+        (
+            [nom] => La Défense
+            [departement] => 92
+            [nom_departement] => Hauts-de-Seine
+            [nombre_visiteurs] => 1500
+        )
+
+    [90] => Array
+        (
+            [nom] => Basilique Saint-Denis
+            [departement] => 93
+            [nom_departement] => Seine-Saint-Denis
+            [nombre_visiteurs] => 150
+        )
+
+    [91] => Array
+        (
+            [nom] => Château de Vincennes
+            [departement] => 94
+            [nom_departement] => Val-de-Marne
+            [nombre_visiteurs] => 200
+        )
+
+)
+Traitement terminé : sites_touristiques_france-v2.csv
+excel2csv
+excel2csv

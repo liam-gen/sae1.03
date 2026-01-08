@@ -1,3 +1,9 @@
+## 08/01/2026
+(titouan)
+fix problème corse 
+ajout fichier de test 
+ajout de messages d'information 
+
 ## 04/01/2026
 (titouan)
 tableau en num dep et leur nom (encore bug sur corse)

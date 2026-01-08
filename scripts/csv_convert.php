@@ -3,63 +3,36 @@
 $nomFichier = $argv[1];
 $nomFichierCsv = pathinfo($nomFichier, PATHINFO_FILENAME) . '.csv';
 
-//$nomFichierDep = $argv[2];
-//$lignesDep = file($nomFichierDep);
-//$tabDep = [];
-
-//foreach ($lignesDep as $ligne){
-//    $tabDep[] = $ligne;
-//}
-
 $nomFichierDep = $argv[2];
 $lignesDep = file($nomFichierDep);
 
 $tabDep = [];
 $numero = 1;
 
+echo "\n Creation tableau département ... \n";
+
 foreach ($lignesDep as $dep) {
-
-    if (strcmp($dep,'Corse-du-Sud') === 0) {
-
+    $dep = trim($dep);
+    if ($dep === 'Corse-du-Sud') {
         $tabDep[$dep] = '2A';
 
-    } elseif (strcmp($dep,'Haute-Corse') === 0) {
-
+    } else if ($dep === 'Haute-Corse') {
         $tabDep[$dep] = '2B';
         $numero = 21; // on reprend la numérotation après la Corse
 
     } else {
-
-        $tabDep[$dep] = str_pad($numero, 2, '0', STR_PAD_LEFT); // met un 0 avant si il n'y a que 2 chiffre
+        // rajout de 0 avant si < 10 pour avoir 
+        // toujours un format avec 2 caractères : 01, 02, ...
+        if ($numero < 10) {
+            $tabDep[$dep] = '0' . $numero;
+        } else {
+            $tabDep[$dep] = (string) $numero;
+        }
         $numero++;
     }
 }
-
-
-// // Lit le fichier et retourne un tableau de lignes
-// $lignes = file($nomFichierCsv);
-
-// // Initialise un tableau pour stocker les données
-// $donnees = [];
-
-// // Parcourt chaque ligne du fichier
-// foreach ($lignes as $ligne) {
-//     // Supprime les espaces et les retours à la ligne
-//     $ligne = trim($ligne);
-//     // Sépare la ligne en utilisant la virgule comme délimiteur
-//     $champs = explode(',', $ligne);
-//     // Vérifie qu'il y a bien 3 champ
-    
-//     if (count($champs) === 3) {
-//         $donnees[] = [
-//             'nom' => trim($champs[0], '"'), // Supprime les guillemets
-//             'nom_departement' => $tabDep[(trim($champs[1]))],
-//             'departement' => trim($champs[1]),
-//             'nombre_visiteurs' => trim($champs[2])
-//         ];
-//     }
-
-// }
+echo "Ok \n";
+echo "Creation tableau des sites touristiques ... \n";
 
 function normaliserNumeroDep(string $num): string {
     if (is_numeric($num) && strlen($num) === 1) {
@@ -89,11 +62,14 @@ foreach ($lignes as $ligne) {
         ];
     }
 }
+echo "Ok \n";
+
+echo "Creation du HTML ... ( à faire )";
 
 
-
+echo "\nTableau de département : \n";
 print_r($tabDep);
-//print_r($donnees);
-
+echo "\nTableau des sites touristiques : \n ";
+print_r($donnees);
 
 ?>

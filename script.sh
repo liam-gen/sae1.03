@@ -11,9 +11,9 @@ repertoire="utilisables"
 
 if [ ! -d "$repertoire" ]
 then
-    echo "creation du dossier : $repertoire"
+    echo "Création du dossier : $repertoire"
     mkdir $repertoire
-    echo "done"
+    echo "OK"
 fi
 
 # Récupérer tous les excel
@@ -22,6 +22,8 @@ nbFichierExcel=$(ls fichiers/*.xlsx | wc -l)
 if [ "$nbFichierExcel" -gt 0 ]
 then
     # Lancer container docker
+    # voir csv_convert.sh 
+    echo "Traitement des fichiers XLSX ..."
 
     docker run -dit --name excel2csv bigpapoo/sae103-excel2csv bash
 
@@ -49,6 +51,7 @@ nbFichierImg=$(ls fichiers/*.png fichiers/*.jpeg fichiers/*.jpg fichiers/*.webp 
 if [ "$nbFichierImg" -gt 0 ]
 then
     # Lancer container docker
+    echo "Traitement des images ..."
 
     docker run -dit --name imagick bigpapoo/sae103-imagick
 
@@ -73,4 +76,8 @@ then
 
     docker container stop imagick
     docker container rm imagick
+
+    echo "Ok"
 fi
+
+echo "Fin du programme"
