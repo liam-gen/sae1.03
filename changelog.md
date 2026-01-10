@@ -1,3 +1,14 @@
+# Changelog
+
+## 10/01/2026
+(titouan)
+création Template html & commande génération du html
+Debut code pour conversion html to pdf
+rename fichiers -> input
+adding output folder
+ajout de quelques sécurité
+
+
 ## 08/01/2026
 (titouan)
 fix problème corse 

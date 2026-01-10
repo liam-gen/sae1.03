@@ -9,7 +9,7 @@ $lignesDep = file($nomFichierDep);
 $tabDep = [];
 $numero = 1;
 
-echo "\n Creation tableau département ... \n";
+echo "\nCreation tableau département ... \n";
 
 foreach ($lignesDep as $dep) {
     $dep = trim($dep);
@@ -64,12 +64,24 @@ foreach ($lignes as $ligne) {
 }
 echo "Ok \n";
 
-echo "Creation du HTML ... ( à faire )";
+echo "Creation du HTML ...\n";
 
 
-echo "\nTableau de département : \n";
-print_r($tabDep);
-echo "\nTableau des sites touristiques : \n ";
-print_r($donnees);
+// Source - https://stackoverflow.com/q
+// Posted by omg, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-01-10, License - CC BY-SA 2.5
+$file = 'template-sites-visites.html';
+ob_start();
+require 'template-sites-visites.php'; 
+$contents = ob_get_contents();
+ob_end_clean();
+file_put_contents($file,$contents);
+//
+echo "Ok\n";
+//echo "\nTableau de département : \n";
+//print_r($tabDep);
+//echo "\nTableau des sites touristiques : \n ";
+//print_r($donnees);
+
 
 ?>

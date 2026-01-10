@@ -2,52 +2,65 @@
 
 # Charger les images (pas nécessaire rendu final)
 
-docker image pull bigpapoo/sae103-imagick
-docker image pull bigpapoo/sae103-excel2csv
-docker image pull bigpapoo/sae103-html2pdf
+
+# sécutité 
+
+IMAGES=(
+  "bigpapoo/sae103-imagick"
+  "bigpapoo/sae103-excel2csv"
+  "bigpapoo/sae103-html2pdf"
+)
+
+for IMAGE in "${IMAGES[@]}"; do
+  if docker image inspect "$IMAGE" > /dev/null 2>&1; then
+    echo "Image déjà présente : $IMAGE"
+  else
+    echo "Image absente, téléchargement : $IMAGE"
+    docker image pull "$IMAGE"
+  fi
+done
+
+repInput="input"
+repSript="scripts"
+if [ ! -d "$repInput" ]
+then
+    echo "Erreur le dossier '$repInput' n'existe pas !"
+    exit 1 
+fi
+
+if [ ! -d "$repSript" ]
+then
+    echo "Erreur le dossier '$repScript' n'existe pas !"
+    exit 1 
+fi
+
+
 
 # création du dossier utilisables si il n'existe pas 
-repertoire="utilisables"
+repTemp="utilisables"
 
-if [ ! -d "$repertoire" ]
+if [ ! -d "$repTemp" ]
 then
-    echo "Création du dossier : $repertoire"
-    mkdir $repertoire
+    echo "Création du dossier : $repTemp"
+    mkdir $repTemp
     echo "OK"
 fi
 
-# Récupérer tous les excel
-
-nbFichierExcel=$(ls fichiers/*.xlsx | wc -l)
-if [ "$nbFichierExcel" -gt 0 ]
+repOutput="output"
+if [ ! -d "$repOutput" ]
 then
-    # Lancer container docker
-    # voir csv_convert.sh 
-    echo "Traitement des fichiers XLSX ..."
-
-    docker run -dit --name excel2csv bigpapoo/sae103-excel2csv bash
-
-    for chemin in fichiers/*.xlsx
-    do
-        
-        if [ -f "$chemin" ]
-        then
-            # Récupérer fichier sans dossier
-            nomFichier="$(basename "$chemin")"
-            # Récupérer fichier avec extension csv
-            nomFichierCsv="${nomFichier%.xlsx}.csv"
-
-            docker container cp "$chemin" excel2csv:"/app/$nomFichier"
-            docker container exec -it excel2csv ssconvert "$nomFichier" "$nomFichierCsv"
-            docker container cp excel2csv:"/app/$nomFichierCsv" utilisables/"$nomFichierCsv"
-        fi
-    done
-
-    docker container stop excel2csv
-    docker container rm excel2csv
+    echo "Création du dossier : $repOutput"
+    mkdir $repOutput
+    echo "OK"
 fi
 
-nbFichierImg=$(ls fichiers/*.png fichiers/*.jpeg fichiers/*.jpg fichiers/*.webp | wc -l)
+
+# Fichier excel
+./csv_convert.sh
+
+# Images
+
+nbFichierImg=$(ls input/*.png input/*.jpeg input/*.jpg input/*.webp | wc -l)
 if [ "$nbFichierImg" -gt 0 ]
 then
     # Lancer container docker
@@ -57,7 +70,7 @@ then
 
     docker container cp scripts/conversionImage.php imagick:"/data/conversionImage.php"
 
-    for chemin in fichiers/*.png fichiers/*.jpeg fichiers/*.jpg fichiers/*.webp
+    for chemin in input/*.png input/*.jpeg input/*.jpg input/*.webp
     do
         if [ -f "$chemin" ]
         then
@@ -68,7 +81,7 @@ then
             
             docker container cp "$chemin" imagick:"/data/$nomFichier"
             docker container exec -it imagick php /data/conversionImage.php "$nomFichier"
-            docker container cp imagick:"/data/$nomFichierWebp" utilisables/"$nomFichierWebp"
+            docker container cp imagick:"/data/$nomFichierWebp" output/"$nomFichierWebp"
         fi
     done
 
@@ -80,4 +93,5 @@ then
     echo "Ok"
 fi
 
+rm utilisables/*
 echo "Fin du programme"

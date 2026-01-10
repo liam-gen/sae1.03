@@ -2,26 +2,33 @@
 
 # Récupérer tous les excel
 
-nbFichierExcel=$(ls fichiers/*.xlsx | wc -l)
+nbFichierExcel=$(ls input/*.xlsx | wc -l)
+
 if [ "$nbFichierExcel" -gt 0 ]
 then
     # Lancer container docker
 
     docker run -dit --name excel2csv bigpapoo/sae103-excel2csv bash
 
-    for chemin in fichiers/*.xlsx
+    for chemin in input/*.xlsx
     do
         
         if [ -f "$chemin" ]
         then
             # Récupérer fichier 
             nomFichier="$(basename "$chemin")"
+
+            echo "Traitement de $nomFichier"
+
             # Récupérer fichier avec extension csv
-            nomFichierCsv="${nomFichier%.xlsx}.csv"
+            nomFichierCsv="${nomFichier%.xlsx}.csv"  # % "supprime de .html"
+
             docker container cp scripts/csv_convert.php excel2csv:"/app/csv_convert.php"
+            docker container cp scripts/template-sites-visites.php excel2csv:"/app/template-sites-visites.php"
+
             docker container cp "$chemin" excel2csv:"/app/$nomFichier"
-            docker container cp fichiers/DEPTS excel2csv:"/app/DEPTS"
-            docker container cp fichiers/REGIONS excel2csv:"/app/REGIONS"
+            docker container cp input/DEPTS excel2csv:"/app/DEPTS"
+            docker container cp input/REGIONS excel2csv:"/app/REGIONS"
             docker container exec -it excel2csv ssconvert "$nomFichier" "$nomFichierCsv"
             
             # traitement (suppression du titre et en-tete)
@@ -47,18 +54,48 @@ then
             echo "Tri des données ..."
 
             docker container exec excel2csv bash -c "
-            sort -n -t',' -k 2 $nomFichierCsv > temp.csv
+            sort -n -r -t',' -k 2 $nomFichierCsv > temp.csv
             mv temp.csv $nomFichierCsv"
 
             echo "Ok"
 
             echo "Lancement script php ..."
             docker container exec -it excel2csv php /app/csv_convert.php "$nomFichier" DEPTS
+
+            docker cp excel2csv:"/app/template-sites-visites.html" utilisables/
             echo "Traitement terminé : $nomFichierCsv"
+            echo "Traitement terminé : $nomFichier"
         fi
     done 
     docker container stop excel2csv
     docker container rm excel2csv
 fi
 
+echo "Création des PDF ..."
+
+nbFichierHTML=$(ls utilisables/*.html | wc -l)
+if [ "$nbFichierHTML" -gt 0 ]
+then
+
+    docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash
     
+    for pathFichierHTML in utilisables/*.html
+    do
+    fichierHTML="$(basename "$pathFichierHTML")"
+    nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
+    
+        if [ -f "$pathFichierHTML" ]
+        then
+            docker cp utilisables/$fichierHTML html2pdf_:"/work/"
+            
+            docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
+            docker container exec -it html2pdf_ bash -c "ls"
+            docker cp html2pdf_:"/work/$nomFichierPDF" output/
+        fi
+    done 
+
+    docker container stop html2pdf_
+fi 
+
+
+

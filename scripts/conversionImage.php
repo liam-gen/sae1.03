@@ -33,7 +33,7 @@ if(filesize($nomFichierWebp) > MAX_TAILLE){
 
     while (filesize($nomFichierWebp) > MAX_TAILLE && $qualite > 50) {
         exec("convert ".escapeshellarg($nomFichierWebp)." -quality $qualite ".escapeshellarg($nomFichierWebp));
-        echo "Qualité: $qualite%";
+        echo "Qualité: $qualite% ";
         $qualite -= 5;
     }
 
