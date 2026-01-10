@@ -19,3 +19,7 @@ titouan :
 automatisation csv Etape (B-1 ) 
 (voir changelog)
 5h + 1h + 2h
+
+Liam : 
+- Automatisation images
+7h

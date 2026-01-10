@@ -16,9 +16,17 @@ $nomFichierWebp = pathinfo($nomFichier, PATHINFO_FILENAME) . '.webp';
 list($width, $height, $type, $attr) = getimagesize($nomFichier);
 
 if($width > MAX_LARGEUR || $height > MAX_HAUTEUR){
-    // Commande pour redimensionner
-    //exec("");
+    // calculer dimensions avec ratio
+    $ratio = min(MAX_LARGEUR / $width, MAX_HAUTEUR / $height);
+    $largeur = floor($width * $ratio);
+    $hauteur = floor($height * $ratio);
     
+    // commande pour redimensionner le fichier
+    exec("convert ".escapeshellarg($nomFichier)." -resize {$largeur}x{$hauteur} ".escapeshellarg($nomFichier));
+    
+    // ? mettre à jour pour affichage
+    $width = $largeur;
+    $height = $hauteur;
 }
 
 if($type != TYPE_WEBP){
@@ -36,14 +44,6 @@ if(filesize($nomFichierWebp) > MAX_TAILLE){
         echo "Qualité: $qualite% ";
         $qualite -= 5;
     }
-
-    // A partir de 50% on réduit la taille si possible. Sinon ???
-    if(filesize($nomFichierWebp) > MAX_TAILLE){
-        
-    }
-
-    // Commande pour optimiser taille
-    //exec("");
     
 }
 
