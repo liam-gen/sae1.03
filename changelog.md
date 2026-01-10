@@ -6,7 +6,8 @@ création Template html & commande génération du html
 Debut code pour conversion html to pdf
 rename fichiers -> input
 adding output folder
-ajout de quelques sécurité
+ajout de quelques sécurités avec messages d'erreurs 
+ajout verif si image docker déja présente 
 
 
 ## 08/01/2026

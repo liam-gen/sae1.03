@@ -1,2 +1,4 @@
 .file
 .vscode/
+utilisables/*
+output/*

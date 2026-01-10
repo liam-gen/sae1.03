@@ -1,8 +1,35 @@
 #!/usr/bin/bash
 
-# Récupérer tous les excel
+# Vérification
+nbFichierExcel=$(ls input/*.xlsx 2>/dev/null | wc -l) #n'affiche pas d'erreur si il n'y a pas de fichier
 
-nbFichierExcel=$(ls input/*.xlsx | wc -l)
+ROUGE="\033[31m"
+RESET="\033[0m"
+CYAN="\033[36m"
+
+if [ "$nbFichierExcel" -eq 0 ]; then
+  echo -e "${CYAN}INFO : aucun fichier Excel (.xlsx) trouvé dans le dossier input/ $RESET"
+  exit 1
+fi
+
+REQUIRED_PATHS=(
+  "scripts/csv_convert.php"
+  "scripts/template-sites-visites.php"
+  "input/DEPTS"
+  "input/REGIONS"
+)
+
+
+for path in "${REQUIRED_PATHS[@]}"; do
+  if [ ! -e "$path" ]; then
+    echo -e "${ROUGE}ERREUR : le fichier ou répertoire '$path' est manquant. $RESET"
+    exit 1
+  fi
+done
+
+echo -e "${CYAN}Tous les fichiers et répertoires requis sont présents. $RESET"
+
+# Programme
 
 if [ "$nbFichierExcel" -gt 0 ]
 then
