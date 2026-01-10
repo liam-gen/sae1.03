@@ -22,4 +22,4 @@ automatisation csv Etape (B-1 )
 
 Liam : 
 - Automatisation images
-7h
+7h + 1h30
