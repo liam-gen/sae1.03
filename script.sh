@@ -2,6 +2,7 @@
 
 # Charger les images (pas nécessaire rendu final)
 
+clear
 
 # sécutité 
 
@@ -41,7 +42,7 @@ repTemp="utilisables"
 
 if [ -d "$repTemp" ]
 then
-    rm utilisables/*
+    rm utilisables/* 2>/dev/null
 fi
 if [ ! -d "$repTemp" ]
 then
@@ -53,7 +54,7 @@ fi
 repOutput="output"
 if [ -d "$repOutput" ]
 then 
-    rm output/*
+    rm output/* 2>/dev/null
 fi
 if [ ! -d "$repOutput" ]
 then

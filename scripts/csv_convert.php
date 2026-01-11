@@ -1,4 +1,10 @@
 <?php
+// Copyright Titouan Moquet - 2026
+
+$ROUGE = "\033[31m";
+$RESET = "\033[0m";
+$CYAN = "\033[36m";
+$GREEN = "\033[32m";
 
 $nomFichier = $argv[1];
 $nomFichierCsv = pathinfo($nomFichier, PATHINFO_FILENAME) . '.csv';
@@ -6,10 +12,13 @@ $nomFichierCsv = pathinfo($nomFichier, PATHINFO_FILENAME) . '.csv';
 $nomFichierDep = $argv[2];
 $lignesDep = file($nomFichierDep);
 
+$nomFichierReg = $argv[3];
+$lignesRegions = file($nomFichierReg);
+
 $tabDep = [];
 $numero = 1;
 
-echo "\nCreation tableau département ... \n";
+echo "${GREEN}INFO : Création tableau département ... $RESET\n\n";
 
 foreach ($lignesDep as $dep) {
     $dep = trim($dep);
@@ -31,8 +40,8 @@ foreach ($lignesDep as $dep) {
         $numero++;
     }
 }
-echo "Ok \n";
-echo "Creation tableau des sites touristiques ... \n";
+
+echo "${GREEN}INFO : Création tableau des sites touristiques ... $RESET\n\n";
 
 function normaliserNumeroDep(string $num): string {
     if (is_numeric($num) && strlen($num) === 1) {
@@ -68,8 +77,6 @@ $depsPresents = [];
 foreach ($donnees as $ligne) {
     $depsPresents[] = $ligne['departement'];
 }
-print_r($depsPresents);
-
 
 foreach ($tabDep as $nomDep => $numDep) {
 
@@ -83,31 +90,76 @@ foreach ($tabDep as $nomDep => $numDep) {
     }
 }
 
-//1er sort
+
+$regions = [];
+
+
+foreach ($lignesRegions as $ligne) {
+
+    $ligne = trim($ligne);
+    if ($ligne === '') {
+        continue;
+    }
+
+    $parts = explode('=', $ligne);
+    $region = trim($parts[0]);
+
+    $depsBruts = explode(',', $parts[1]);
+    $departements = [];
+
+    foreach ($depsBruts as $dep) {
+        $departements[] = trim($dep);
+    }
+
+    $regions[$region] = $departements;
+}
+
+$sommeVisiteursParRegion = [];
+
+// Initialisation : toutes les régions à 0
+foreach ($regions as $region => $departements) {
+    $sommeVisiteursParRegion[$region] = 0;
+}
+
+// Parcours des sites touristiques
+foreach ($donnees as $site) {
+
+    $departementSite = (string) $site['departement'];
+    $visiteurs = (int) $site['nombre_visiteurs'];
+
+    // Recherche de la région
+    foreach ($regions as $region => $departements) {
+
+        if (in_array($departementSite, $departements)) { // si le departemement est dans la region 
+            $sommeVisiteursParRegion[$region] += $visiteurs;
+            break; // on a trouvé la région, on sort
+        }
+    }
+}
+
+
+# CREATION DES HTML 
+
+//1er sort sites-dept.html
 usort($donnees, function ($a, $b) {
     return $a['departement'] <=> $b['departement'];
 });
 
-echo "Ok \n";
 
-echo "Creation des HTML ...\n";
+echo "${GREEN}INFO : Creation des HTML ...$RESET\n";
 
+echo "${CYAN} |- sites-dept.html $RESET\n";
 // inspiré d'un poste sur stackoverflow.com
 // récupere le STDOUT du script php pour l'ecrire dans un fichier html 
-
-echo "sites-dept.html\n";
-
 $file1 = 'template-sites-dept.html';
 ob_start();
 require 'template-sites-dept.php'; 
 $contents = ob_get_contents();
 ob_end_clean();
 file_put_contents($file1,$contents);
-//
-echo "Ok \n";
-echo "sites-visites.html\n";
-// 2eme sort et 2eme fichier 
 
+// 2eme sort sites-visites.html
+echo "${CYAN} |- sites-visites.html  $RESET\n";
 
 usort($donnees, function ($a, $b) {
     if ($a['nombre_visiteurs'] == $b['nombre_visiteurs']) {
@@ -123,9 +175,17 @@ $contents2 = ob_get_contents();
 ob_end_clean();
 file_put_contents($file2,$contents2);
 
+// sites-regions.html
+echo "${CYAN} |- sites-regions.html  $RESET\n";
 
-echo "Ok \n";
+$file3 = 'template-sites-regions.html';
+ob_start();
+require 'template-sites-regions.php'; 
+$contents3 = ob_get_contents();
+ob_end_clean();
+file_put_contents($file3,$contents3);
 
-echo "Fin du php\n";
+
+echo "${GREEN}\nINFO : Fin du PHP, copie des fichiers générés$RESET\n";
 
 ?>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+<!-- Copyright Titouan Moquet - 2026 -->
 <head>
     <meta charset="UTF-8">
     <title>Départements</title>
