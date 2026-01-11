@@ -33,7 +33,6 @@ done
 
 NB_SECTION=0
 NB_ARTICLE=0
-NB_P=0
 
 # Debug
 
@@ -41,27 +40,27 @@ echo -e "${GREEN}INFO : Traitement de $FICHIER_IN ... $RESET"
 
 # Base HTML
 
-echo "<!doctype html>" > $FICHIER_OUT
-echo '<html lang="fr">' >> $FICHIER_OUT
-
-echo "<head>" >> $FICHIER_OUT
-echo '  <meta charset="utf-8">' >> $FICHIER_OUT
-echo "  <title>$FICHIER_IN</title>" >> $FICHIER_OUT
-echo "</head>" >> $FICHIER_OUT
-
-echo "<body>" >> $FICHIER_OUT
-echo "  <main>" >> $FICHIER_OUT 
+{
+    echo "<!doctype html>"
+    echo '<html lang="fr">'
+    echo ""
+    echo "<head>"
+    echo '  <meta charset="utf-8">'
+    echo "  <title>$FICHIER</title>"
+    echo "</head>"
+    echo ""
+    echo "<body>"
+    echo "  <main>"
+    echo ""
+} > "$FICHIER_OUT" 
 
 # Body
 
-NB_LIGNES=$(wc -l < "$FICHIER_IN")
-
-for i in $(seq 1 $NB_LIGNES); 
+while read -r LIGNE || [ -n "$LIGNE" ]; 
 do
 
-    LIGNE=$(sed -n "${i}p" "$FICHIER_IN")
     balise=$(echo "$LIGNE" | cut -d'=' -f1)
-    contenu=$(echo "$LIGNE" | cut -d'=' -f2)
+    contenu=$(echo "$LIGNE" | cut -d'=' -f2-)
 
    
     if [ "$balise" == "TITLE" ]; then
@@ -108,32 +107,27 @@ do
 
     fi 
     
+done < "$FICHIER_IN"
+
+# Dernière Ligne
+
+if [ "$NB_ARTICLE" -ne 0 ]; then
+    echo "          </article>" >> $FICHIER_OUT
+fi
+
+if [ "$NB_SECTION" -ne 0 ]; then
+    echo "      </section>" >> $FICHIER_OUT
+fi
+
+# Fin HTML
+
+echo "" >> $FICHIER_OUT
+echo "  </main>" >> $FICHIER_OUT
+echo "</body>" >> $FICHIER_OUT
+echo "</html>" >> $FICHIER_OUT
 
 
-    # Dernière Ligne
-
-    if [ "$i" -eq "$NB_LIGNES" ]; then
-        # echo "DERNIERE LIGNE"
-        
-        
-        if [ "$NB_ARTICLE" -ne 0 ]; then
-            echo "          </article>" >> $FICHIER_OUT
-        fi
-
-        if [ "$NB_SECTION" -ne 0 ]; then
-            echo "      </section>" >> $FICHIER_OUT
-        fi
-
-        # Fin HTML
-        
-        echo "  </main>" >> $FICHIER_OUT
-        echo "</body>" >> $FICHIER_OUT
-        echo "</html>" >> $FICHIER_OUT
-
-    fi
-
-done
 
 # Debug fin
 
-echo "${GREEN}INFO : Fin traitement fichiers textes $RESET"
+echo -e "${GREEN}INFO : Fin traitement fichiers textes $RESET"
