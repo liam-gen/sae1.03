@@ -50,7 +50,7 @@ foreach ($lignes as $ligne) {
 
     $champs = str_getcsv($ligne); 
 
-    if (count($champs) === 3) {
+    if (count($champs) === 3) { // verification si il y a bien 3 colonne dans le csv
 
         $numeroDep = normaliserNumeroDep(trim($champs[1]));
 
@@ -62,26 +62,70 @@ foreach ($lignes as $ligne) {
         ];
     }
 }
+
+$depsPresents = [];
+
+foreach ($donnees as $ligne) {
+    $depsPresents[] = $ligne['departement'];
+}
+print_r($depsPresents);
+
+
+foreach ($tabDep as $nomDep => $numDep) {
+
+    if (!in_array($numDep, $depsPresents)) {
+        $donnees[] = [
+            'nom' => '',
+            'departement' => $numDep,
+            'nom_departement' => $nomDep,
+            'nombre_visiteurs' => ''
+        ];
+    }
+}
+
+//1er sort
+usort($donnees, function ($a, $b) {
+    return $a['departement'] <=> $b['departement'];
+});
+
 echo "Ok \n";
 
-echo "Creation du HTML ...\n";
+echo "Creation des HTML ...\n";
 
+// inspiré d'un poste sur stackoverflow.com
+// récupere le STDOUT du script php pour l'ecrire dans un fichier html 
 
-// Source - https://stackoverflow.com/q
-// Posted by omg, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-01-10, License - CC BY-SA 2.5
-$file = 'template-sites-visites.html';
+echo "sites-dept.html\n";
+
+$file1 = 'template-sites-dept.html';
 ob_start();
-require 'template-sites-visites.php'; 
+require 'template-sites-dept.php'; 
 $contents = ob_get_contents();
 ob_end_clean();
-file_put_contents($file,$contents);
+file_put_contents($file1,$contents);
 //
-echo "Ok\n";
-//echo "\nTableau de département : \n";
-//print_r($tabDep);
-//echo "\nTableau des sites touristiques : \n ";
-//print_r($donnees);
+echo "Ok \n";
+echo "sites-visites.html\n";
+// 2eme sort et 2eme fichier 
 
+
+usort($donnees, function ($a, $b) {
+    if ($a['nombre_visiteurs'] == $b['nombre_visiteurs']) {
+        return $a['departement'] <=> $b['departement'];
+    }
+    return $b['nombre_visiteurs'] <=> $a['nombre_visiteurs'];
+});
+
+$file2 = 'template-sites-visites.html';
+ob_start();
+require 'template-sites-dept.php'; 
+$contents2 = ob_get_contents();
+ob_end_clean();
+file_put_contents($file2,$contents2);
+
+
+echo "Ok \n";
+
+echo "Fin du php\n";
 
 ?>

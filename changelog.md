@@ -1,5 +1,10 @@
 # Changelog
 
+## 11/01/2026
+(titouan)
+Fin traitement fichier sites-dept.pdf et sites-visites.pdf 
+> reste sites-regions.pdf et changer le titres en fonction des fichiers ? 
+
 ## 10/01/2026
 (titouan)
 création Template html & commande génération du html
@@ -8,7 +13,8 @@ rename fichiers -> input
 adding output folder
 ajout de quelques sécurités avec messages d'erreurs 
 ajout verif si image docker déja présente 
-
+(Liam)
+fin conversion images
 
 ## 08/01/2026
 (titouan)

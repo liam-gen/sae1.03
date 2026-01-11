@@ -39,6 +39,10 @@ fi
 # création du dossier utilisables si il n'existe pas 
 repTemp="utilisables"
 
+if [ -d "$repTemp" ]
+then
+    rm utilisables/*
+fi
 if [ ! -d "$repTemp" ]
 then
     echo "Création du dossier : $repTemp"
@@ -47,6 +51,10 @@ then
 fi
 
 repOutput="output"
+if [ -d "$repOutput" ]
+then 
+    rm output/*
+fi
 if [ ! -d "$repOutput" ]
 then
     echo "Création du dossier : $repOutput"
@@ -59,7 +67,6 @@ fi
 ./csv_convert.sh
 
 # Images
-
 nbFichierImg=$(ls input/*.png input/*.jpeg input/*.jpg input/*.webp | wc -l)
 if [ "$nbFichierImg" -gt 0 ]
 then
@@ -93,5 +100,5 @@ then
     echo "Ok"
 fi
 
-rm utilisables/*
+#rm utilisables/*
 echo "Fin du programme"
