@@ -1,13 +1,14 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Copyright Titouan Moquet - 2026 
-
-
-# Vérification 
+echo "$(date) - Lancement script csv_convert.sh" >> LOGS.log
 
 ROUGE="\033[31m"
 RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
+
+
+# Vérification 
 
 if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
     echo -e "${ROUGE}ERREUR : Ce script ne peut être exécuté que depuis script.sh. $RESET" >&2
@@ -33,7 +34,7 @@ for path in "${REQUIRED_PATHS[@]}"; do
   fi
 done
 
-echo -e "${CYAN}Tous les fichiers et répertoires requis sont présents. $RESET"
+echo -e "${CYAN}Tous les fichiers et répertoires requis sont présents. $RESET" 
 
 # Programme
 nbFichierExcel=$(ls input/*.xlsx 2>/dev/null | wc -l) #n'affiche pas d'erreur si il n'y a pas de fichier
@@ -47,7 +48,7 @@ then
     # Lancer container docker
 
     docker run -dit --rm --name excel2csv bigpapoo/sae103-excel2csv bash >/dev/null
-
+    echo "$(date) - Lancement bigpapoo/sae103-excel2csv" >> LOGS.log # redirection de messages pour avoir des logs
     for chemin in input/*.xlsx
     do
         
@@ -62,12 +63,27 @@ then
             nomFichierCsv="${nomFichier%.xlsx}.csv"  # % "supprime de .xlsx"
 
             docker container cp scripts/csv_convert.php excel2csv:"/app/" >/dev/null
+            echo "$(date) - csv_convert.php copié vers /app/" >> LOGS.log
+
             docker container cp scripts/template-sites-dept.php excel2csv:"/app/" >/dev/null
+            echo "$(date) - template-sites-dept.php copié vers /app/" >> LOGS.log
+
             docker container cp scripts/template-sites-regions.php excel2csv:"/app/" >/dev/null
+            echo "$(date) - template-sites-regions.php copié vers /app/" >> LOGS.log
+
             docker container cp "$chemin" excel2csv:"/app/" >/dev/null
+            echo "$(date) - "$chemin" copié vers /app/" >> LOGS.log
+
             docker container cp input/DEPTS excel2csv:"/app/" >/dev/null
+            echo "$(date) - DEPTS copié vers /app/" >> LOGS.log
+
             docker container cp input/REGIONS excel2csv:"/app/" >/dev/null
+            echo "$(date) - REGIONS copié vers /app/" >> LOGS.log
+
             docker container cp input/Logo-OFT-horizontal.jpg excel2csv:"/app/" >/dev/null
+            echo "$(date) - Logo-OFT-horizontal.jpg copié vers /app/" >> LOGS.log
+            
+
             # docker container exec excel2csv bash -c "touch template-sites-dept.html template-sites-visites.html"
             docker container exec -it excel2csv ssconvert "$nomFichier" "$nomFichierCsv"
             
@@ -103,10 +119,15 @@ then
             echo ""
 
             docker container exec -it excel2csv php /app/csv_convert.php "$nomFichierCsv" DEPTS REGIONS
+            echo "$(date) - exec php script" >> LOGS.log
 
             docker cp excel2csv:"/app/template-sites-dept.html" utilisables/ >/dev/null
+            echo "$(date) - template-sites-dept.html copié vers utilisables/" >> LOGS.log
             docker cp excel2csv:"/app/template-sites-visites.html" utilisables/ >/dev/null
+            echo "$(date) - template-sites-visites.html copié vers utilisables/" >> LOGS.log
             docker cp excel2csv:"/app/template-sites-regions.html" utilisables/ >/dev/null
+            echo "$(date) - template-sites-regions.html copié vers utilisables/" >> LOGS.log
+
    
             echo ""
             echo -e "${GREEN}INFO : Traitement terminé : $nomFichier $RESET"
@@ -115,6 +136,7 @@ then
         fi
     done 
     docker container stop excel2csv >/dev/null
+    echo "$(date) - Arrêt excel2csv" >> LOGS.log
     echo ""
 fi
 
@@ -136,7 +158,7 @@ for path in "${REQUIRED_PATHS2[@]}"; do
 done
 
 
-nbFichierHTML=$(ls utilisables/*.html 2>/dev/null | wc -l)
+nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
 if [ "$nbFichierHTML" -eq 0 ]; then
   echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
   exit 0
@@ -144,10 +166,15 @@ fi
 
 if [ "$nbFichierHTML" -gt 0 ]
 then
-  
+    docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash >/dev/null
+    echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> LOGS.log
+
+    docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
+    echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> LOGS.log
+
     for pathFichierHTML in utilisables/*.html
     do  
-        docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash >/dev/null
+        
         fichierHTML="$(basename "$pathFichierHTML")"
         nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
     
@@ -155,10 +182,17 @@ then
         then
             echo -e "${CYAN} |- $nomFichierPDF $RESET"
             docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
-            docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
+            echo "$(date) - $fichierHTML copié vers /work/" >> LOGS.log
+
+            
+
             docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
+            echo "$(date) - exec weasyprint" >> LOGS.log
+
             docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
-            docker container stop html2pdf_ >/dev/null
+            echo "$(date) - $nomFichierPDF copié vers output/" >> LOGS.log
+
+            
         fi
 
         # rename des fichiers 
@@ -166,19 +200,25 @@ then
         if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
         then
             mv output/template-sites-dept.pdf output/sites-dept.pdf
+            echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> LOGS.log
 
         elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
         then
             mv output/template-sites-visites.pdf output/sites-visites.pdf
+            echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> LOGS.log
 
         elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
         then
             mv output/template-sites-regions.pdf output/sites-regions.pdf
+            echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> LOGS.log
 
         fi
         echo ""
     done 
+    docker container stop html2pdf_ >/dev/null
+    echo "$(date) - Arrêt html2pdf" >> LOGS.log
+    
 fi 
 echo -e "${GREEN}INFO : Fin traitement fichier xlsx $RESET"
-
+echo "$(date) - Fin du script csv_convert.sh" >> LOGS.log
  

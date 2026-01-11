@@ -9,6 +9,9 @@ clean affichage
 ajout de sécurités, on peux pas lancer les scripts secondaire nous même seul spript.sh peux le faire => evite les erreurs 
 
 update readme & participation 
+ajout de crédits sur les script 
+Création de logs (bonus non compté dans les heures)
+
 
 (Flavien)
 Fichier texte to html
