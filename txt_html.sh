@@ -9,6 +9,11 @@ GREEN="\033[32m"
 
 # Répertoires
 
+if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
+    echo -e "${ROUGE}ERREUR : Ce script ne peut être exécuté que depuis script.sh. $RESET" >&2
+    exit 1
+fi
+
 DIR_IN="input"
 DIR_OUT="utilisables"
 
