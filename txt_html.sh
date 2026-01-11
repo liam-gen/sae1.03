@@ -7,6 +7,13 @@ RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
 
+# a modifier
+
+FICHIER="presentation_musee_louvre"
+FICHIER_IN="input/$FICHIER"
+touch "output/$FICHIER"
+FICHIER_OUT="utilisables/$FICHIER.html"
+
 # Présence fichiers
 
 REQUIRED_PATHS=("input/presentation_musee_louvre")
@@ -17,10 +24,6 @@ for path in "${REQUIRED_PATHS[@]}"; do
     exit 1
   fi
 done
-
-FICHIER_IN="input/presentation_musee_louvre"
-touch output/presentation_musee_louvre
-FICHIER_OUT="utilisables/presentation_musee_louvre.html"
 
 
 # Variables
