@@ -23,6 +23,6 @@ Temps total : XX H (ou YY min)
 
 ### Flavien :
 - Txt -> HTML -> PDF
-> 2h30
+> 3h30
 
 ### Raphaël :
