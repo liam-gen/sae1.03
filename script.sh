@@ -4,44 +4,33 @@
 
 clear
 
-ROUGE="\033[31m"
+RED="\033[31m"
 RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
-YELLOW="\033[33m"
+YELLOW="\033[38;5;220m"
+ORANGE="\033[38;5;208m"
 
 # sécutité 
-chmod +x cvs_convert.sh
-chmod +x images.sh
-chmod +x txt_html.sh
-
-
-IMAGES=(
-  "bigpapoo/sae103-imagick"
-  "bigpapoo/sae103-excel2csv"
-  "bigpapoo/sae103-html2pdf"
-)
-
-for IMAGE in "${IMAGES[@]}"; do
-  if docker image inspect "$IMAGE" > /dev/null 2>&1; then
-    echo "Image déjà présente : $IMAGE"
-  else
-    echo "Image absente, téléchargement : $IMAGE"
-    docker image pull "$IMAGE"
-  fi
-done
+if [ ! -x "csv_convert.sh" ]; then
+    chmod +x csv_convert.sh
+elif [ ! -x "images.sh" ]; then
+    chmod +x images.sh
+elif [ ! -x "txt_html.sh" ]; then
+    chmod +x txt_html.sh
+fi
 
 repInput="input"
 repSript="scripts"
 if [ ! -d "$repInput" ]
 then
-    echo "Erreur le dossier '$repInput' n'existe pas !"
+    echo -e "${RED}Erreur le dossier '$repInput' n'existe pas ! $RESET"
     exit 1 
 fi
 
 if [ ! -d "$repSript" ]
 then
-    echo "Erreur le dossier '$repScript' n'existe pas !"
+    echo -e "${RED}Erreur le dossier '$repScript' n'existe pas ! $RESET"
     exit 1 
 fi
 
@@ -53,43 +42,63 @@ repTemp="utilisables"
 if [ -d "$repTemp" ]
 then
     rm utilisables/* 2>/dev/null
-fi
-if [ ! -d "$repTemp" ]
+elif [ ! -d "$repTemp" ]
 then
-    echo "Création du dossier : $repTemp"
+    echo -e "${ORANGE}WARN : Le dossier $repTemp n'existe pas ! Création du dossier : $repTemp $RESET"
     mkdir $repTemp
-    echo "OK"
 fi
 
 repOutput="output"
 if [ -d "$repOutput" ]
 then 
     rm output/* 2>/dev/null
-fi
-if [ ! -d "$repOutput" ]
+elif [ ! -d "$repOutput" ]
 then
-    echo "Création du dossier : $repOutput"
+    echo -e "${ORANGE}WARN : Le dossier $repOutput  n'existe pas ! Création du dossier : $repOutput $RESET"
     mkdir $repOutput
-    echo "OK"
 fi
+
+echo -e "${CYAN}NOTE : Tous les fichiers et répertoires requis sont présents. $RESET"
+
+IMAGES=(
+  "bigpapoo/sae103-imagick"
+  "bigpapoo/sae103-excel2csv"
+  "bigpapoo/sae103-html2pdf"
+)
+
+for IMAGE in "${IMAGES[@]}"; do
+  if docker image inspect "$IMAGE" > /dev/null 2>&1; then
+    echo -e "${CYAN}NOTE : Image déjà présente : $IMAGE $RESET"
+  else
+    echo -e "${ORANGE}WARN : Image absente, téléchargement : $IMAGE $RESET"
+    docker image pull "$IMAGE"
+  fi
+done
+
+# variable pour empêcher le lancement des autres scripts s'ils ne sont pas lancés depuis celui-ci
+export CALLED_FROM_SCRIPT1="true"
 
 # Fichier excel
-echo -e "${CYAN}INFO : EXCEL $RESET"
+echo ""
+echo -e "${YELLOW}NOTE : Traitement EXCEL $RESET"
 
 ./csv_convert.sh
-sleep 2
+sleep 1
 
 # Images
 echo "" 
-echo -e "${CYAN}INFO : IMAGES $RESET"
+echo -e "${YELLOW}NOTE : Traitement IMAGES $RESET"
 echo "" 
 ./images.sh
-sleep 2
+sleep 1
 
 # Fichier textes
-echo -e "${CYAN}INFO : TEXTES $RESET"
+echo -e "${YELLOW}NOTE : Traitement TEXTES $RESET"
 echo "" 
 ./txt_html.sh
 
-#rm utilisables/*
-echo "${YELLOW}Fin du programme $RESET"
+# nettoyage 
+  # rm utilisables/*
+#fin 
+echo ""
+echo -e "${YELLOW}Fin du programme, Vos fichier sont disponibles dans le dossier : 'output/' $RESET"

@@ -9,6 +9,11 @@ RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
 
+if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
+    echo -e "${ROUGE}ERREUR : Ce script ne peut être exécuté que depuis script.sh. $RESET" >&2
+    exit 1
+fi
+
 echo ""
 echo -e "${GREEN}INFO : Traitement fichier xlsx $RESET"
 echo ""

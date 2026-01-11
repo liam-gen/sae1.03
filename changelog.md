@@ -4,9 +4,11 @@
 (titouan)
 Fin traitement fichier sites-dept.pdf et sites-visites.pdf 
 Traitement sites-regions.pdf
-> changer le titres en fonction des fichiers ? 
-fix affichage
-> encore des bugs 
+
+clean affichage
+ajout de sécurités, on peux pas lancer les scripts secondaire nous même seul spript.sh peux le faire => evite les erreurs 
+
+update readme & participation 
 
 (Flavien)
 Fichier texte to html

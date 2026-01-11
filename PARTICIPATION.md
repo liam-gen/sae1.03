@@ -4,27 +4,25 @@
 
 Temps total : XX H (ou YY min)
 
-| Membre | %   | Commentaire |
-| ------ | --- | ----------- |
-| Toto   | 30  |             |
-| Lulu   | 10  |             |
-| Pipo   | 60  |             |
-| Momo   | 0   |             |
+| Membre    | %   | Commentaire |
+| --------- | --- | ----------- |
+| Titouan   | 00  |             |
+| Liam      | 00  |             |
+| Flavien   | 00  |             |
+| Raphaël   | 00  |             |
 
-## TACHE ZZZ
+## TACHES
 
-etc.
+### Titouan : 
+- automatisation csv Etape (B-1) & divers correctifs (voir changelog)  
+> 15h
 
-titouan : 
-automatisation csv Etape (B-1 ) 
-(voir changelog)
+### Liam : 
+- Automatisation converssion des images
+> 8h30
 
-14h30 
-
-Liam : 
-- Automatisation images
-8h30
-
-Flavien :
+### Flavien :
 - Txt -> HTML -> PDF
-2h30
+> 2h30
+
+### Raphaël :
