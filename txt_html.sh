@@ -7,16 +7,19 @@ RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
 
-# a modifier
+# a modifier (faire une détection)
 
 FICHIER="presentation_musee_louvre"
 FICHIER_IN="input/$FICHIER"
 touch "output/$FICHIER"
 FICHIER_OUT="utilisables/$FICHIER.html"
 
+
+
+
 # Présence fichiers
 
-REQUIRED_PATHS=("input/presentation_musee_louvre")
+REQUIRED_PATHS=("$FICHIER_IN")
 
 for path in "${REQUIRED_PATHS[@]}"; do
   if [ ! -e "$path" ]; then
@@ -32,9 +35,11 @@ NB_SECTION=0
 NB_ARTICLE=0
 NB_P=0
 
-# Base HTML
+# Debug
 
 echo -e "${GREEN}INFO : Traitement de $FICHIER_IN ... $RESET"
+
+# Base HTML
 
 echo "<!doctype html>" > $FICHIER_OUT
 echo '<html lang="fr">' >> $FICHIER_OUT
@@ -50,8 +55,6 @@ echo "  <main>" >> $FICHIER_OUT
 # Body
 
 NB_LIGNES=$(wc -l < "$FICHIER_IN")
-
-echo "Conversion en HTML de $FICHIER_IN"
 
 for i in $(seq 1 $NB_LIGNES); 
 do
@@ -130,5 +133,7 @@ do
     fi
 
 done
+
+# Debug fin
 
 echo "${GREEN}INFO : Fin traitement fichiers textes $RESET"
