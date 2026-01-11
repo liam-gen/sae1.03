@@ -19,7 +19,7 @@ fi
 if [ "$nbFichierImg" -gt 0 ]
 then
     # Lancer container docker
-    echo -e "Traitement des images ...\n\n"
+    echo -e "${VERT}INFO : Traitement des images ...$RESET \n"
 
     docker run -dit --name imagick bigpapoo/sae103-imagick > /dev/null
 
@@ -49,5 +49,5 @@ then
     docker container stop imagick > /dev/null
     docker container rm imagick > /dev/null
 
-    echo -e "\n${CYAN}INFO : Fin du traitement des images${RESET}\n"
+    echo -e "\n${VERT}INFO : Fin du traitement des images${RESET}\n"
 fi

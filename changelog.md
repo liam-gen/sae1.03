@@ -5,6 +5,8 @@
 Fin traitement fichier sites-dept.pdf et sites-visites.pdf 
 Traitement sites-regions.pdf
 > changer le titres en fonction des fichiers ? 
+fix affichage
+> encore des bugs 
 
 (Flavien)
 Fichier texte to html

@@ -4,7 +4,17 @@
 
 clear
 
+ROUGE="\033[31m"
+RESET="\033[0m"
+CYAN="\033[36m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+
 # sécutité 
+chmod +x cvs_convert.sh
+chmod +x images.sh
+chmod +x txt_html.sh
+
 
 IMAGES=(
   "bigpapoo/sae103-imagick"
@@ -63,12 +73,23 @@ then
     echo "OK"
 fi
 
-
 # Fichier excel
+echo -e "${CYAN}INFO : EXCEL $RESET"
+
 ./csv_convert.sh
+sleep 2
 
 # Images
+echo "" 
+echo -e "${CYAN}INFO : IMAGES $RESET"
+echo "" 
 ./images.sh
+sleep 2
+
+# Fichier textes
+echo -e "${CYAN}INFO : TEXTES $RESET"
+echo "" 
+./txt_html.sh
 
 #rm utilisables/*
-echo "Fin du programme"
+echo "${YELLOW}Fin du programme $RESET"

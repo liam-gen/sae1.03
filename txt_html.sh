@@ -3,6 +3,7 @@
 ROUGE="\033[31m"
 RESET="\033[0m"
 CYAN="\033[36m"
+GREEN="\033[32m"
 
 REQUIRED_PATHS=("input/presentation_musee_louvre")
 
@@ -18,8 +19,6 @@ touch output/presentation_musee_louvre
 FICHIER_OUT="utilisables/presentation_musee_louvre.html"
 
 
-
-
 # Variables
 
 NB_SECTION=0
@@ -27,6 +26,8 @@ NB_ARTICLE=0
 NB_P=0
 
 # Base HTML
+
+echo -e "${GREEN}INFO : Traitement de $FICHIER_IN ... $RESET"
 
 echo "<!doctype html>" > $FICHIER_OUT
 echo '<html lang="fr">' >> $FICHIER_OUT
@@ -120,3 +121,5 @@ do
     fi
 
 done
+
+echo "${GREEN}INFO : Fin traitement fichiers textes $RESET"
