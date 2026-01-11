@@ -24,3 +24,7 @@ automatisation csv Etape (B-1 )
 Liam : 
 - Automatisation images
 8h30
+
+Flavien :
+- Txt -> HTML -> PDF
+1h
