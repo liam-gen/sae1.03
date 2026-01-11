@@ -41,12 +41,11 @@ if(filesize($nomFichierWebp) > MAX_TAILLE){
 
     while (filesize($nomFichierWebp) > MAX_TAILLE && $qualite > 50) {
         exec("convert ".escapeshellarg($nomFichierWebp)." -quality $qualite ".escapeshellarg($nomFichierWebp));
-        echo "Qualité: $qualite% ";
         $qualite -= 5;
     }
     
 }
 
-echo "Dimensions: $width x $height\n";
+/*echo "Dimensions: $width x $height\n";
 echo "Taille: " . filesize($nomFichier)." puis ". filesize($nomFichierWebp) ."\n";
-echo "Type: " . $type."\n\n";
+echo "Type: " . $type."\n\n";*/

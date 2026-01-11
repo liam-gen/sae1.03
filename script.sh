@@ -68,38 +68,7 @@ fi
 ./csv_convert.sh
 
 # Images
-nbFichierImg=$(ls input/*.png input/*.jpeg input/*.jpg input/*.webp | wc -l)
-if [ "$nbFichierImg" -gt 0 ]
-then
-    # Lancer container docker
-    echo "Traitement des images ..."
-
-    docker run -dit --name imagick bigpapoo/sae103-imagick
-
-    docker container cp scripts/conversionImage.php imagick:"/data/conversionImage.php"
-
-    for chemin in input/*.png input/*.jpeg input/*.jpg input/*.webp
-    do
-        if [ -f "$chemin" ]
-        then
-            # Récupérer fichier sans dossier
-            nomFichier="$(basename "$chemin")"
-            # Récupérer fichier avec extension webp
-            nomFichierWebp="${nomFichier%.*}.webp"
-            
-            docker container cp "$chemin" imagick:"/data/$nomFichier"
-            docker container exec -it imagick php /data/conversionImage.php "$nomFichier"
-            docker container cp imagick:"/data/$nomFichierWebp" output/"$nomFichierWebp"
-        fi
-    done
-
-    
-
-    docker container stop imagick
-    docker container rm imagick
-
-    echo "Ok"
-fi
+./images.sh
 
 #rm utilisables/*
 echo "Fin du programme"
