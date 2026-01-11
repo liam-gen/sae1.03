@@ -1,9 +1,13 @@
- #!/usr/bin/bash
+#!/usr/bin/bash
+
+# Couleurs
 
 ROUGE="\033[31m"
 RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
+
+# Présence fichiers
 
 REQUIRED_PATHS=("input/presentation_musee_louvre")
 
@@ -44,9 +48,11 @@ echo "  <main>" >> $FICHIER_OUT
 
 NB_LIGNES=$(wc -l < "$FICHIER_IN")
 
+echo "Conversion en HTML de $FICHIER_IN"
+
 for i in $(seq 1 $NB_LIGNES); 
 do
-    
+
     LIGNE=$(sed -n "${i}p" "$FICHIER_IN")
     balise=$(echo "$LIGNE" | cut -d'=' -f1)
     contenu=$(echo "$LIGNE" | cut -d'=' -f2)
