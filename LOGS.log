@@ -1,47 +1,41 @@
-lun. 12 janv. 2026 10:30:34 CET - Lancement du script principal
-lun. 12 janv. 2026 10:30:34 CET - Verification des fichiers et dossiers
-lun. 12 janv. 2026 10:31:19 CET - Fin de la vérification
-lun. 12 janv. 2026 10:31:19 CET - Traitement EXEL
-lun. 12 janv. 2026 10:31:19 CET - Lancement script csv_convert.sh
-lun. 12 janv. 2026 10:31:19 CET - Lancement bigpapoo/sae103-excel2csv
-lun. 12 janv. 2026 10:31:19 CET - csv_convert.php copié vers /app/
-lun. 12 janv. 2026 10:31:19 CET - template-sites-dept.php copié vers /app/
-lun. 12 janv. 2026 10:31:19 CET - template-sites-regions.php copié vers /app/
-lun. 12 janv. 2026 10:31:20 CET - input/sites_touristiques_france-v2.xlsx copié vers /app/
-lun. 12 janv. 2026 10:31:20 CET - DEPTS copié vers /app/
-lun. 12 janv. 2026 10:31:20 CET - REGIONS copié vers /app/
-lun. 12 janv. 2026 10:31:20 CET - Logo-OFT-horizontal.jpg copié vers /app/
-lun. 12 janv. 2026 10:31:20 CET - exec php script
-lun. 12 janv. 2026 10:31:20 CET - template-sites-dept.html copié vers utilisables/
-lun. 12 janv. 2026 10:31:20 CET - template-sites-visites.html copié vers utilisables/
-lun. 12 janv. 2026 10:31:20 CET - template-sites-regions.html copié vers utilisables/
-lun. 12 janv. 2026 10:31:20 CET - Arrêt excel2csv
-lun. 12 janv. 2026 10:31:21 CET - Traitement IMAGES
-lun. 12 janv. 2026 10:31:21 CET - Lancement script images.sh
-lun. 12 janv. 2026 10:31:29 CET - Lancement du container bigpapoo/sae103-imagick 
-lun. 12 janv. 2026 10:31:29 CET - Copie de conversionImage.php vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Copie du fichier louvre.png vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Conversion de l'image louvre.png
-lun. 12 janv. 2026 10:31:29 CET - Export de l'image louvre.webp vers le dossier local
-lun. 12 janv. 2026 10:31:29 CET - Copie du fichier tour-eiffel.png vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Conversion de l'image tour-eiffel.png
-lun. 12 janv. 2026 10:31:29 CET - Export de l'image tour-eiffel.webp vers le dossier local
-lun. 12 janv. 2026 10:31:29 CET - Copie du fichier jules-verne.jpg vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Conversion de l'image jules-verne.jpg
-lun. 12 janv. 2026 10:31:29 CET - Export de l'image jules-verne.webp vers le dossier local
-lun. 12 janv. 2026 10:31:29 CET - Copie du fichier Logo-OFT-horizontal.jpg vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Conversion de l'image Logo-OFT-horizontal.jpg
-lun. 12 janv. 2026 10:31:29 CET - Export de l'image Logo-OFT-horizontal.webp vers le dossier local
-lun. 12 janv. 2026 10:31:29 CET - Copie du fichier mont-blanc.jpg vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Conversion de l'image mont-blanc.jpg
-lun. 12 janv. 2026 10:31:29 CET - Export de l'image mont-blanc.webp vers le dossier local
-lun. 12 janv. 2026 10:31:29 CET - Copie du fichier place-stanilslas.webp vers imagick 
-lun. 12 janv. 2026 10:31:29 CET - Conversion de l'image place-stanilslas.webp
-lun. 12 janv. 2026 10:31:29 CET - Export de l'image place-stanilslas.webp vers le dossier local
-lun. 12 janv. 2026 10:31:29 CET - Arrêt du container imagick
-lun. 12 janv. 2026 10:31:29 CET - Fin du traitement des images
-lun. 12 janv. 2026 10:31:29 CET - Fin script images.sh
-lun. 12 janv. 2026 10:31:30 CET - Traitement TEXTES
-lun. 12 janv. 2026 10:31:30 CET - Lancement script txt_html.sh
-lun. 12 janv. 2026 10:31:30 CET - Fin script txt_html.sh
-lun. 12 janv. 2026 10:31:30 CET - Fin du programme principal
+lun. 12 janv. 2026 08:04:24 CET - Lancement du script principal
+lun. 12 janv. 2026 08:04:24 CET - Verification des fichiers et dossiers
+lun. 12 janv. 2026 08:04:24 CET - Fin de la vérification
+lun. 12 janv. 2026 08:04:24 CET - Traitement EXEL
+lun. 12 janv. 2026 08:04:24 CET - Lancement script csv_convert.sh
+lun. 12 janv. 2026 08:04:25 CET - Lancement bigpapoo/sae103-excel2csv
+lun. 12 janv. 2026 08:04:25 CET - csv_convert.php copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-dept.php copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-regions.php copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - input/sites_touristiques_france-v2.xlsx copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - DEPTS copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - REGIONS copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - Logo-OFT-horizontal.jpg copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - exec php script
+lun. 12 janv. 2026 08:04:25 CET - template-sites-dept.html copié vers utilisables/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-visites.html copié vers utilisables/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-regions.html copié vers utilisables/
+lun. 12 janv. 2026 08:04:35 CET - Arrêt excel2csv
+lun. 12 janv. 2026 08:04:35 CET - Lancement de bigpapoo/sae103-html2pdf
+lun. 12 janv. 2026 08:04:36 CET - Logo-OFT-horizontal.jpg copié vers /work/
+lun. 12 janv. 2026 08:04:36 CET - template-sites-dept.html copié vers /work/
+lun. 12 janv. 2026 08:04:36 CET - exec weasyprint
+lun. 12 janv. 2026 08:04:36 CET - template-sites-dept.pdf copié vers output/
+lun. 12 janv. 2026 08:04:37 CET - rename template-sites-dept.pdf sites-dept.pdf
+lun. 12 janv. 2026 08:04:37 CET - template-sites-regions.html copié vers /work/
+lun. 12 janv. 2026 08:04:37 CET - exec weasyprint
+lun. 12 janv. 2026 08:04:37 CET - template-sites-regions.pdf copié vers output/
+lun. 12 janv. 2026 08:04:37 CET - rename template-sites-regions.pdff sites-regions.pdf
+lun. 12 janv. 2026 08:04:37 CET - template-sites-visites.html copié vers /work/
+lun. 12 janv. 2026 08:04:38 CET - exec weasyprint
+lun. 12 janv. 2026 08:04:38 CET - template-sites-visites.pdf copié vers output/
+lun. 12 janv. 2026 08:04:38 CET - rename template-sites-visites.pdf sites-visites.pdf
+lun. 12 janv. 2026 08:04:48 CET - Arrêt html2pdf
+lun. 12 janv. 2026 08:04:48 CET - Fin du script csv_convert.sh
+lun. 12 janv. 2026 08:04:49 CET - Traitement IMAGES
+lun. 12 janv. 2026 08:04:49 CET - Lancement script images.sh
+lun. 12 janv. 2026 08:05:01 CET - Fin script images.sh
+lun. 12 janv. 2026 08:05:02 CET - Traitement TEXTES
+lun. 12 janv. 2026 08:05:02 CET - Lancement script txt_html.sh
+lun. 12 janv. 2026 08:05:03 CET - Fin script txt_html.sh
+lun. 12 janv. 2026 08:05:03 CET - Fin du programme principal

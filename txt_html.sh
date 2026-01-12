@@ -1,5 +1,5 @@
 #!/bin/bash
-# copyright Flavien Devallan - 2026
+# copyrights Flavien Devallan - 2026
 
 echo "$(date) - Lancement script txt_html.sh" >> LOGS.log
 # Couleurs

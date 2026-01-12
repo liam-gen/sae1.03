@@ -1,5 +1,5 @@
 <?php
-// Copyright Titouan Moquet - 2026
+// Copyrights Titouan Moquet - 2026
 
 $ROUGE = "\033[31m";
 $RESET = "\033[0m";

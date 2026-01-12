@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright Titouan Moquet - 2026 
+# Copyrights Titouan Moquet - 2026 
 echo "$(date) - Lancement script csv_convert.sh" >> LOGS.log
 
 ROUGE="\033[31m"
