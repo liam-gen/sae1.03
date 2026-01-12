@@ -1,4 +1,7 @@
 <?php
+
+// Copyright Liam Charpentier - 2026
+
 const MAX_TAILLE = 180000; // 18 ko
 
 const MIN_LARGEUR = 350;
