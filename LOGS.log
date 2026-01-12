@@ -1,37 +1,37 @@
-Mon Jan 12 10:34:33 CET 2026 - Lancement du script principal
-Mon Jan 12 10:34:33 CET 2026 - Verification des fichiers et dossiers
-Mon Jan 12 10:34:33 CET 2026 - Fin de la vérification
-Mon Jan 12 10:34:33 CET 2026 - Traitement EXEL
-Mon Jan 12 10:34:33 CET 2026 - Lancement script csv_convert.sh
-Mon Jan 12 10:34:33 CET 2026 - Lancement bigpapoo/sae103-excel2csv
-Mon Jan 12 10:34:33 CET 2026 - csv_convert.php copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - template-sites-dept.php copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - template-sites-regions.php copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - input/sites_touristiques_france-v2.xlsx copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - DEPTS copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - REGIONS copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - Logo-OFT-horizontal.jpg copié vers /app/
-Mon Jan 12 10:34:33 CET 2026 - exec php script
-Mon Jan 12 10:34:33 CET 2026 - template-sites-dept.html copié vers utilisables/
-Mon Jan 12 10:34:33 CET 2026 - template-sites-visites.html copié vers utilisables/
-Mon Jan 12 10:34:33 CET 2026 - template-sites-regions.html copié vers utilisables/
-Mon Jan 12 10:34:33 CET 2026 - Arrêt excel2csv
-Mon Jan 12 10:34:34 CET 2026 - Traitement IMAGES
-Mon Jan 12 10:34:34 CET 2026 - Lancement script images.sh
-Mon Jan 12 10:34:35 CET 2026 - Fin script images.sh
-Mon Jan 12 10:34:36 CET 2026 - Traitement TEXTES
-Mon Jan 12 10:34:36 CET 2026 - Lancement script txt_html.sh
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/DEPTS
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/Logo-OFT-horizontal.jpg
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/REGIONS
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/jules-verne.jpg
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/louvre.png
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/mont-blanc.jpg
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/mont-st-michel.pdf
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/place-stanilslas.webp
-Mon Jan 12 10:34:36 CET 2026 - Validation de input/presentation_musee_louvre
-Mon Jan 12 10:34:36 CET 2026 - Traitement de input/presentation_musee_louvre
-Mon Jan 12 10:34:38 CET 2026 - Validation de input/sites_touristiques_france-v2.xlsx
-Mon Jan 12 10:34:38 CET 2026 - Validation de input/tour-eiffel.png
-Mon Jan 12 10:34:38 CET 2026 - Fin script txt_html.sh
-Mon Jan 12 10:34:38 CET 2026 - Fin du programme principal
+Mon Jan 12 10:48:55 CET 2026 - Lancement du script principal
+Mon Jan 12 10:48:55 CET 2026 - Verification des fichiers et dossiers
+Mon Jan 12 10:48:55 CET 2026 - Fin de la vérification
+Mon Jan 12 10:48:55 CET 2026 - Traitement EXEL
+Mon Jan 12 10:48:55 CET 2026 - Lancement script csv_convert.sh
+Mon Jan 12 10:48:55 CET 2026 - Lancement bigpapoo/sae103-excel2csv
+Mon Jan 12 10:48:55 CET 2026 - csv_convert.php copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - template-sites-dept.php copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - template-sites-regions.php copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - input/sites_touristiques_france-v2.xlsx copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - DEPTS copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - REGIONS copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - Logo-OFT-horizontal.jpg copié vers /app/
+Mon Jan 12 10:48:55 CET 2026 - exec php script
+Mon Jan 12 10:48:55 CET 2026 - template-sites-dept.html copié vers utilisables/
+Mon Jan 12 10:48:55 CET 2026 - template-sites-visites.html copié vers utilisables/
+Mon Jan 12 10:48:55 CET 2026 - template-sites-regions.html copié vers utilisables/
+Mon Jan 12 10:48:55 CET 2026 - Arrêt excel2csv
+Mon Jan 12 10:48:56 CET 2026 - Traitement IMAGES
+Mon Jan 12 10:48:56 CET 2026 - Lancement script images.sh
+Mon Jan 12 10:48:56 CET 2026 - Fin script images.sh
+Mon Jan 12 10:48:57 CET 2026 - Traitement TEXTES
+Mon Jan 12 10:48:57 CET 2026 - Lancement script txt_html.sh
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/DEPTS
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/Logo-OFT-horizontal.jpg
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/REGIONS
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/jules-verne.jpg
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/louvre.png
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/mont-blanc.jpg
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/mont-st-michel.pdf
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/place-stanilslas.webp
+Mon Jan 12 10:48:57 CET 2026 - Validation de input/presentation_musee_louvre
+Mon Jan 12 10:48:57 CET 2026 - Traitement de input/presentation_musee_louvre
+Mon Jan 12 10:48:59 CET 2026 - Validation de input/sites_touristiques_france-v2.xlsx
+Mon Jan 12 10:48:59 CET 2026 - Validation de input/tour-eiffel.png
+Mon Jan 12 10:48:59 CET 2026 - Fin script txt_html.sh
+Mon Jan 12 10:48:59 CET 2026 - Fin du programme principal
