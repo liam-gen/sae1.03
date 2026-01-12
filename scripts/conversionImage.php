@@ -15,7 +15,7 @@ const TYPE_WEBP = 18;
 $nomFichier = $argv[1];
 $nomFichierWebp = pathinfo($nomFichier, PATHINFO_FILENAME) . '.webp';
 
-// Récupérer les dimensions
+// récupérer les dimensions de l'image
 list($width, $height, $type, $attr) = getimagesize($nomFichier);
 
 if($width > MAX_LARGEUR || $height > MAX_HAUTEUR){
@@ -42,6 +42,8 @@ if(filesize($nomFichierWebp) > MAX_TAILLE){
     // début à 90% de qualite
     $qualite = 90;
 
+    // tant qu'on fait plus de 15ko par contre on dépasse pas 50% de qualité
+    // ? si on a atteint 50% et que le fichier dépasse toujours ?
     while (filesize($nomFichierWebp) > MAX_TAILLE && $qualite > 50) {
         exec("convert ".escapeshellarg($nomFichierWebp)." -quality $qualite ".escapeshellarg($nomFichierWebp));
         $qualite -= 5;
