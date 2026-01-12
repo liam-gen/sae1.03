@@ -10,7 +10,7 @@ GREEN="\033[32m"
 
 # récupération des nom des images docker via les arguments 
 IMAGE_EXCEL2CSV=$1
-IMAGE_HTML2PDF=$2
+
 
 
 # Sécurité : seul script.sh peut exécuter le script
@@ -150,83 +150,83 @@ fi
 
 
 # converssion PDF
-echo -e "${GREEN}INFO : Création des PDF ... $RESET"
-echo ""
+# echo -e "${GREEN}INFO : Création des PDF ... $RESET"
+# echo ""
 
-REQUIRED_PATHS2=(
-  "input/Logo-OFT-horizontal.jpg"
-)
+# REQUIRED_PATHS2=(
+#   "input/Logo-OFT-horizontal.jpg"
+# )
 
-for path in "${REQUIRED_PATHS2[@]}"; do
-  if [ ! -e "$path" ]; then
-    echo -e "${ROUGE}ERREUR : le fichier ou répertoire '$path' est manquant, les pdf n'auront pas de logo $RESET"
-    echo -e "${ROUGE}Le script va continuer dans quelques secondes $RESET"
-    sleep 4
-  fi
-done
+# for path in "${REQUIRED_PATHS2[@]}"; do
+#   if [ ! -e "$path" ]; then
+#     echo -e "${ROUGE}ERREUR : le fichier ou répertoire '$path' est manquant, les pdf n'auront pas de logo $RESET"
+#     echo -e "${ROUGE}Le script va continuer dans quelques secondes $RESET"
+#     sleep 4
+#   fi
+# done
 
 
-nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
-if [ "$nbFichierHTML" -eq 0 ]; then
-  echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
-  exit 0
-fi
+# nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
+# if [ "$nbFichierHTML" -eq 0 ]; then
+#   echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
+#   exit 0
+# fi
 
-if [ "$nbFichierHTML" -gt 0 ]
-then
-    docker run -dit --rm --name html2pdf_ $IMAGE_HTML2PDF bash >/dev/null
-    echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
+# if [ "$nbFichierHTML" -gt 0 ]
+# then
+#     docker run -dit --rm --name html2pdf_ $IMAGE_HTML2PDF bash >/dev/null
+#     echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
 
-    docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
-    echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
+#     docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
+#     echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
 
-    for pathFichierHTML in utilisables/*.html
-    do  
+#     for pathFichierHTML in utilisables/*.html
+#     do  
         
-        fichierHTML="$(basename "$pathFichierHTML")"
-        nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
+#         fichierHTML="$(basename "$pathFichierHTML")"
+#         nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
     
-        if [ -f "$pathFichierHTML" ]
-        then
-            echo -e "${CYAN} |- $nomFichierPDF $RESET"
-            docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
-            echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
+#         if [ -f "$pathFichierHTML" ]
+#         then
+#             echo -e "${CYAN} |- $nomFichierPDF $RESET"
+#             docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
+#             echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
 
             
 
-            docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
-            echo "$(date) - exec weasyprint" >> $LOGSFILE
+#             docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
+#             echo "$(date) - exec weasyprint" >> $LOGSFILE
 
-            docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
-            echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
+#             docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
+#             echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
 
             
-        fi
+#         fi
 
-        # rename des fichiers 
-        echo -e "${GREEN}INFO : Renommage du fichiers $nomFichierPDF $RESET"
-        if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
-        then
-            mv output/template-sites-dept.pdf output/sites-dept.pdf
-            echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> $LOGSFILE
+#         # rename des fichiers 
+#         echo -e "${GREEN}INFO : Renommage du fichiers $nomFichierPDF $RESET"
+#         if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
+#         then
+#             mv output/template-sites-dept.pdf output/sites-dept.pdf
+#             echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> $LOGSFILE
 
-        elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
-        then
-            mv output/template-sites-visites.pdf output/sites-visites.pdf
-            echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> $LOGSFILE
+#         elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
+#         then
+#             mv output/template-sites-visites.pdf output/sites-visites.pdf
+#             echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> $LOGSFILE
 
-        elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
-        then
-            mv output/template-sites-regions.pdf output/sites-regions.pdf
-            echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> $LOGSFILE
+#         elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
+#         then
+#             mv output/template-sites-regions.pdf output/sites-regions.pdf
+#             echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> $LOGSFILE
 
-        fi
-        echo ""
-    done 
-    docker container stop html2pdf_ >/dev/null
-    echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
+#         fi
+#         echo ""
+#     done 
+#     docker container stop html2pdf_ >/dev/null
+#     echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
     
-fi 
+#fi 
 echo -e "${GREEN}INFO : Fin traitement fichier xlsx $RESET"
 echo "$(date) - Fin du script csv_convert.sh" >> $LOGSFILE
  

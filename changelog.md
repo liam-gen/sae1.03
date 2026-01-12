@@ -5,6 +5,7 @@ remplacement de LOGS.log par une variables
 ajout de commentaires
 2/3 changement dans csv_convert.sh et script php
 
+Déplacement de la conversion des pdf dans un autre script
 
 ## 11/01/2026 : works
 (titouan)

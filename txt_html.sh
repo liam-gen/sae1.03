@@ -177,50 +177,50 @@ do
 done
 
 
-nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
-if [ "$nbFichierHTML" -eq 0 ]; then
-  echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
-  exit 0
-fi
+# nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
+# if [ "$nbFichierHTML" -eq 0 ]; then
+#   echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
+#   exit 0
+# fi
 
 
-if [ "$nbFichierHTML" -gt 0 ]
-then
-    docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash >/dev/null
-    echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
+# if [ "$nbFichierHTML" -gt 0 ]
+# then
+#     docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash >/dev/null
+#     echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
 
-    docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
-    echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
+#     docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
+#     echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
 
-    for pathFichierHTML in utilisables/*.html
-    do  
+#     for pathFichierHTML in utilisables/*.html
+#     do  
         
-        fichierHTML="$(basename "$pathFichierHTML")"
-        nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
+#         fichierHTML="$(basename "$pathFichierHTML")"
+#         nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
     
-        if [ -f "$pathFichierHTML" ]
-        then
-            echo -e "${CYAN} |- $nomFichierPDF $RESET"
-            docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
-            echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
+#         if [ -f "$pathFichierHTML" ]
+#         then
+#             echo -e "${CYAN} |- $nomFichierPDF $RESET"
+#             docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
+#             echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
 
             
 
-            docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
-            echo "$(date) - exec weasyprint" >> $LOGSFILE
+#             docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
+#             echo "$(date) - exec weasyprint" >> $LOGSFILE
 
-            docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
-            echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
+#             docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
+#             echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
 
             
-        fi
+#         fi
         
         
-    done 
-    docker container stop html2pdf_ >/dev/null
-    echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
+#     done 
+#     docker container stop html2pdf_ >/dev/null
+#     echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
     
-fi 
+# fi 
 
 # Debug fin
 

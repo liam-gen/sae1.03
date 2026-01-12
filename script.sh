@@ -46,6 +46,8 @@ elif [ ! -x "images.sh" ]; then
     chmod +x images.sh
 elif [ ! -x "txt_html.sh" ]; then
     chmod +x txt_html.sh
+elif [ ! -x "html_pdf.sh" ]; then
+    chmod +x html_pdf.sh
 fi
 
 # Vérifiaction des dossiers obligatoires 
@@ -149,7 +151,7 @@ sleep 2
 echo ""
 echo -e "${YELLOW}NOTE : Traitement EXCEL $RESET"
 echo "$(date) - Traitement EXEL" >> $LOGSFILE
-./csv_convert.sh $IMAGE_EXCEL2CSV $IMAGE_HTML2PDF
+./csv_convert.sh $IMAGE_EXCEL2CSV 
 sleep 1
   
 # Images
@@ -164,10 +166,19 @@ sleep 1
 echo -e "${YELLOW}NOTE : Traitement TEXTES $RESET"
 echo "$(date) - Traitement TEXTES" >> $LOGSFILE
 echo "" 
-./txt_html.sh $IMAGE_HTML2PDF
+./txt_html.sh 
+
+
+
+echo -e "${YELLOW}NOTE : Traitement HTML to PDF $RESET"
+echo "$(date) - Traitement PDF" >> $LOGSFILE
+echo "" 
+./html_pdf.sh $IMAGE_HTML2PDF
+
 
 # nettoyage 
-  # rm utilisables/*
+rm utilisables/* >/dev/null 2>&1
+
 #fin 
 echo ""
 echo -e "${YELLOW}Fin du programme, Vos fichier sont disponibles dans le dossier : 'output/' $RESET"

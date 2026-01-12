@@ -44,7 +44,7 @@ Sinon si vous êtes sur les pc de l'IUT de Lannion :
 > Les dossiers input/ et script/ sont obligatoires, de plus les scripts ont besoin de certains fichiers pour fonctionner
 > **input/** : DEPT, REGION, Logo-OFT-horizontal.jpg    
 > **scripts/** : conversionImage.php, csv_convert.php, template-sites-dept.php, template-sites-regions.php  
-> **sae1.03/** : csv_convert.sh, images.sh, txt_html.sh  
+> **sae1.03/** : csv_convert.sh, images.sh, txt_html.sh, html_pdf.sh
 
 ## Informations
 
