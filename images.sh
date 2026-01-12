@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 #copyrigh Liam Charpentier - 2026 
 
 # Vérification 

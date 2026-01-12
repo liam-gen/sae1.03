@@ -2,6 +2,7 @@
 # copyright Flavien Devallan - 2026
 
 echo "$(date) - Lancement script txt_html.sh" >> LOGS.log
+
 # Couleurs
 
 ROUGE="\033[31m"
@@ -18,12 +19,15 @@ fi
 
 DIR_IN="input"
 DIR_OUT="utilisables"
+DIR_LOG="LOGS.log"
 
 
 # Détection fichiers à traiter
 
 for FICHIER_IN in "$DIR_IN"/*; 
 do
+
+    echo "$(date) - Validation de $FICHIER_IN" >> $DIR_LOG # Logs traitement du fichier
 
     # Conditions de validités
     
@@ -80,6 +84,8 @@ do
 
     echo -e "${GREEN}INFO : Traitement de $FICHIER_IN ... $RESET"
 
+    echo "$(date) - Traitement de $FICHIER_IN" >> $DIR_LOG # Logs traitement du fichier
+
     # Base HTML
 
     {
@@ -107,11 +113,16 @@ do
     
         if [ "$balise" == "TITLE" ]; then
             # echo "H1"
+
+            # echo "$(date) - TXT -> HTML : H1" >> $DIR_LOG # Logs H1
+            
             echo "      <h1> $contenu </h1>" >> "$FICHIER_OUT"
 
 
         elif [ "$balise" == "SECT" ]; then
             # echo "SECTION + H2"
+
+            # echo "$(date) - TXT -> HTML : Section + H2" >> $DIR_LOG # Logs Section + H2
             
             
             if [ "$NB_ARTICLE" -ne 0 ]; then
@@ -131,6 +142,8 @@ do
         elif [ "$balise" == "SUB_SECT" ]; then
             # echo "ARTICLE + H3"
 
+            # echo "$(date) - TXT -> HTML : Article + H3" >> $DIR_LOG # Logs Article + H3
+
             
             if [ "$NB_ARTICLE" -ne 0 ]; then
                 echo "          </article>" >> "$FICHIER_OUT"
@@ -143,6 +156,8 @@ do
 
         elif [ "$balise" == "TEXT" ]; then
             # echo "P"
+
+            # echo "$(date) - TXT -> HTML : P" >> $DIR_LOG # P
             
             echo "              <p> $contenu </p>" >> "$FICHIER_OUT"
             ((NB_P++))
@@ -173,4 +188,5 @@ done
 # Debug fin
 
 echo -e "${GREEN}INFO : Fin traitement fichiers textes $RESET"
+
 echo "$(date) - Fin script txt_html.sh" >> LOGS.log
