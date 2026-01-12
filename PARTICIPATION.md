@@ -6,9 +6,9 @@ Temps total : 40 H
 
 | Membre    | %     | Commentaire |
 | --------- | ----- | ----------- |
-| Titouan   | 45    |             |
-| Liam      | 37.5  |             |
-| Flavien   | 17.5  |             |
+| Titouan   | 44.5  |             |
+| Liam      | 37    |             |
+| Flavien   | 18.5  |             |
 | Raphaël   | 00    |    ...      |
 
 ## TACHES
