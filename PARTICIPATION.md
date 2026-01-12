@@ -2,13 +2,13 @@
 
 ## TABLEAU DE SYNTHESE JEU DE FICHIERS
 
-Temps total : 40 H 
-
+Temps total : 40 H 30
+(arrondi)
 | Membre    | %     | Commentaire |
 | --------- | ----- | ----------- |
 | Titouan   | 45    |             |
-| Liam      | 37.5  |             |
-| Flavien   | 17.5  |             |
+| Liam      | 37    |             |
+| Flavien   | 18.5  |             |
 | Raphaël   | 00    |    ...      |
 
 ## TACHES
