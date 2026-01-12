@@ -12,6 +12,7 @@ CYAN="\033[36m"
 GREEN="\033[32m"
 
 # Sécurité : seul script.sh peut exécuter le script
+
 if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
     echo -e "${ROUGE}ERREUR : Ce script ne peut être exécuté que depuis script.sh. $RESET" >&2
     exit 1
@@ -19,9 +20,11 @@ fi
 
 
 # Récupération des nom des images docker via les arguments 
+
 IMAGE_HTML2PDF=$1
 
 # Répertoires
+
 DIR_IN="utilisables"
 DIR_OUT="output"
 DIR_LOG="LOGS.log"
@@ -36,7 +39,7 @@ if [ "$nbFichierHTML" -eq 0 ]; then
   exit 0
 fi
 
-# vérification si logo présent
+# Vérification si logo présent
 REQUIRED_PATHS2=(
   "input/Logo-OFT-horizontal.jpg"
 )
@@ -79,7 +82,7 @@ then
             docker cp html2pdf_:"/work/$nomFichierPDF" "$DIR_OUT/" >/dev/null
             echo "$(date) - $nomFichierPDF copié vers $DIR_OUT/" >> $LOGSFILE
 
-            # rename des fichiers 
+            # Rename des fichiers 
             
             if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
             then
@@ -113,4 +116,3 @@ fi
 
 echo -e "${GREEN}INFO : Fin traitement fichiers textes $RESET"
 echo "$(date) - Fin script html_pdf.sh" >> $LOGSFILE
-
