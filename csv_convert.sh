@@ -152,7 +152,7 @@ then
       docker container exec excel2csv bash -c "
       sort -n -r -t',' -k 2 $nomFichierCsv > temp.csv
       mv temp.csv $nomFichierCsv"
-      # docker container exec excel2csv bash -c "cat $nomFichierCsv" 
+      
 
       # Lancement script php
 

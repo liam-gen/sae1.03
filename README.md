@@ -46,6 +46,9 @@ Sinon si vous êtes sur les pc de l'IUT de Lannion :
 > **scripts/** : conversionImage.php, csv_convert.php, template-sites-dept.php, template-sites-regions.php  
 > **sae1.03/** : csv_convert.sh, images.sh, txt_html.sh, html_pdf.sh
 
+> [!NOTE]
+> Fonctionne uniquement sur Linux (et MacOS avec Bash installé)
+
 ## Informations
 
 

@@ -109,14 +109,6 @@ then
     
 fi 
 
-# Suppression fichiers
-
-#echo -e "${GREEN}INFO : Supression des HTML dans $DIR_IN $RESET"
-#echo "$(date) - Supression des HTML dans $DIR_IN" >> $LOGSFILE
-
-#rm $DIR_IN/*.html
-
-
 # Debug fin
 
 echo -e "${GREEN}INFO : Fin traitement fichiers textes $RESET"
