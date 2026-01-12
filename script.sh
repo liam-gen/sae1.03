@@ -1,5 +1,5 @@
 #!/bin/bash
-# copyright Titouan Moquet & Liam Charpentier - 2026
+# copyrights Titouan Moquet & Liam Charpentier - 2026
 
 clear
 

@@ -1,41 +1,41 @@
-dim. 11 janv. 2026 23:34:49 CET - Lancement du script principal
-dim. 11 janv. 2026 23:34:49 CET - Verification des fichiers et dossiers
-dim. 11 janv. 2026 23:34:49 CET - Fin de la vérification
-dim. 11 janv. 2026 23:34:49 CET - Traitement EXEL
-dim. 11 janv. 2026 23:34:49 CET - Lancement script csv_convert.sh
-dim. 11 janv. 2026 23:34:49 CET - Lancement bigpapoo/sae103-excel2csv
-dim. 11 janv. 2026 23:34:49 CET - csv_convert.php copié vers /app/
-dim. 11 janv. 2026 23:34:49 CET - template-sites-dept.php copié vers /app/
-dim. 11 janv. 2026 23:34:49 CET - template-sites-regions.php copié vers /app/
-dim. 11 janv. 2026 23:34:49 CET - input/sites_touristiques_france-v2.xlsx copié vers /app/
-dim. 11 janv. 2026 23:34:49 CET - DEPTS copié vers /app/
-dim. 11 janv. 2026 23:34:49 CET - REGIONS copié vers /app/
-dim. 11 janv. 2026 23:34:49 CET - Logo-OFT-horizontal.jpg copié vers /app/
-dim. 11 janv. 2026 23:34:50 CET - exec php script
-dim. 11 janv. 2026 23:34:50 CET - template-sites-dept.html copié vers utilisables/
-dim. 11 janv. 2026 23:34:50 CET - template-sites-visites.html copié vers utilisables/
-dim. 11 janv. 2026 23:34:50 CET - template-sites-regions.html copié vers utilisables/
-dim. 11 janv. 2026 23:35:00 CET - Arrêt excel2csv
-dim. 11 janv. 2026 23:35:00 CET - Lancement de bigpapoo/sae103-html2pdf
-dim. 11 janv. 2026 23:35:00 CET - Logo-OFT-horizontal.jpg copié vers /work/
-dim. 11 janv. 2026 23:35:00 CET - template-sites-dept.html copié vers /work/
-dim. 11 janv. 2026 23:35:01 CET - exec weasyprint
-dim. 11 janv. 2026 23:35:01 CET - template-sites-dept.pdf copié vers output/
-dim. 11 janv. 2026 23:35:01 CET - rename template-sites-dept.pdf sites-dept.pdf
-dim. 11 janv. 2026 23:35:01 CET - template-sites-regions.html copié vers /work/
-dim. 11 janv. 2026 23:35:02 CET - exec weasyprint
-dim. 11 janv. 2026 23:35:02 CET - template-sites-regions.pdf copié vers output/
-dim. 11 janv. 2026 23:35:02 CET - rename template-sites-regions.pdff sites-regions.pdf
-dim. 11 janv. 2026 23:35:02 CET - template-sites-visites.html copié vers /work/
-dim. 11 janv. 2026 23:35:02 CET - exec weasyprint
-dim. 11 janv. 2026 23:35:02 CET - template-sites-visites.pdf copié vers output/
-dim. 11 janv. 2026 23:35:02 CET - rename template-sites-visites.pdf sites-visites.pdf
-dim. 11 janv. 2026 23:35:12 CET - Arrêt html2pdf
-dim. 11 janv. 2026 23:35:12 CET - Fin du script csv_convert.sh
-dim. 11 janv. 2026 23:35:13 CET - Traitement IMAGES
-dim. 11 janv. 2026 23:35:13 CET - Lancement script images.sh
-dim. 11 janv. 2026 23:35:26 CET - Fin script images.sh
-dim. 11 janv. 2026 23:35:27 CET - Traitement TEXTES
-dim. 11 janv. 2026 23:35:27 CET - Lancement script txt_html.sh
-dim. 11 janv. 2026 23:35:27 CET - Fin script txt_html.sh
-dim. 11 janv. 2026 23:35:27 CET - Fin du programme principal
+lun. 12 janv. 2026 08:04:24 CET - Lancement du script principal
+lun. 12 janv. 2026 08:04:24 CET - Verification des fichiers et dossiers
+lun. 12 janv. 2026 08:04:24 CET - Fin de la vérification
+lun. 12 janv. 2026 08:04:24 CET - Traitement EXEL
+lun. 12 janv. 2026 08:04:24 CET - Lancement script csv_convert.sh
+lun. 12 janv. 2026 08:04:25 CET - Lancement bigpapoo/sae103-excel2csv
+lun. 12 janv. 2026 08:04:25 CET - csv_convert.php copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-dept.php copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-regions.php copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - input/sites_touristiques_france-v2.xlsx copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - DEPTS copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - REGIONS copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - Logo-OFT-horizontal.jpg copié vers /app/
+lun. 12 janv. 2026 08:04:25 CET - exec php script
+lun. 12 janv. 2026 08:04:25 CET - template-sites-dept.html copié vers utilisables/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-visites.html copié vers utilisables/
+lun. 12 janv. 2026 08:04:25 CET - template-sites-regions.html copié vers utilisables/
+lun. 12 janv. 2026 08:04:35 CET - Arrêt excel2csv
+lun. 12 janv. 2026 08:04:35 CET - Lancement de bigpapoo/sae103-html2pdf
+lun. 12 janv. 2026 08:04:36 CET - Logo-OFT-horizontal.jpg copié vers /work/
+lun. 12 janv. 2026 08:04:36 CET - template-sites-dept.html copié vers /work/
+lun. 12 janv. 2026 08:04:36 CET - exec weasyprint
+lun. 12 janv. 2026 08:04:36 CET - template-sites-dept.pdf copié vers output/
+lun. 12 janv. 2026 08:04:37 CET - rename template-sites-dept.pdf sites-dept.pdf
+lun. 12 janv. 2026 08:04:37 CET - template-sites-regions.html copié vers /work/
+lun. 12 janv. 2026 08:04:37 CET - exec weasyprint
+lun. 12 janv. 2026 08:04:37 CET - template-sites-regions.pdf copié vers output/
+lun. 12 janv. 2026 08:04:37 CET - rename template-sites-regions.pdff sites-regions.pdf
+lun. 12 janv. 2026 08:04:37 CET - template-sites-visites.html copié vers /work/
+lun. 12 janv. 2026 08:04:38 CET - exec weasyprint
+lun. 12 janv. 2026 08:04:38 CET - template-sites-visites.pdf copié vers output/
+lun. 12 janv. 2026 08:04:38 CET - rename template-sites-visites.pdf sites-visites.pdf
+lun. 12 janv. 2026 08:04:48 CET - Arrêt html2pdf
+lun. 12 janv. 2026 08:04:48 CET - Fin du script csv_convert.sh
+lun. 12 janv. 2026 08:04:49 CET - Traitement IMAGES
+lun. 12 janv. 2026 08:04:49 CET - Lancement script images.sh
+lun. 12 janv. 2026 08:05:01 CET - Fin script images.sh
+lun. 12 janv. 2026 08:05:02 CET - Traitement TEXTES
+lun. 12 janv. 2026 08:05:02 CET - Lancement script txt_html.sh
+lun. 12 janv. 2026 08:05:03 CET - Fin script txt_html.sh
+lun. 12 janv. 2026 08:05:03 CET - Fin du programme principal
