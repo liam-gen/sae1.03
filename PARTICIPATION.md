@@ -14,11 +14,11 @@ Temps total : 40 H
 ## TACHES
 
 ### Titouan : 
-- automatisation csv Etape (B-1) & divers correctifs (voir changelog)  
+- Automatisation csv Etape (B-1) & divers correctifs (voir changelog)  
 > 18H
 
 ### Liam : 
-- Automatisation converssion des images
+- Automatisation conversion des images
 > 15H
 
 ### Flavien :
@@ -26,4 +26,6 @@ Temps total : 40 H
 > 7H30
 
 ### Raphaël :
+
+> 0h
 
