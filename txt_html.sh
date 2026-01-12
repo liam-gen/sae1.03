@@ -58,7 +58,6 @@ do
 
     NB_SECTION=0
     NB_ARTICLE=0
-    NB_P=0
 
     # Présence fichiers
 
@@ -174,6 +173,75 @@ do
     echo "</html>" >> "$FICHIER_OUT"
 
 done
+
+# voir done / install docker
+
+nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
+if [ "$nbFichierHTML" -eq 0 ]; then
+  echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
+  exit 0
+fi
+
+
+if [ "$nbFichierHTML" -gt 0 ]
+then
+    docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash >/dev/null
+    echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
+
+    docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
+    echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
+
+    for pathFichierHTML in utilisables/*.html
+    do  
+        
+        fichierHTML="$(basename "$pathFichierHTML")"
+        nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
+    
+        if [ -f "$pathFichierHTML" ]
+        then
+            echo -e "${CYAN} |- $nomFichierPDF $RESET"
+            docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
+            echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
+
+            
+
+            docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
+            echo "$(date) - exec weasyprint" >> $LOGSFILE
+
+            docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
+            echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
+
+            
+        fi
+
+        : '
+
+        # rename des fichiers 
+        echo -e "${GREEN}INFO : Renommage du fichiers $nomFichierPDF $RESET"
+        if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
+        then
+            mv output/template-sites-dept.pdf output/sites-dept.pdf
+            echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> $LOGSFILE
+
+        elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
+        then
+            mv output/template-sites-visites.pdf output/sites-visites.pdf
+            echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> $LOGSFILE
+
+        elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
+        then
+            mv output/template-sites-regions.pdf output/sites-regions.pdf
+            echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> $LOGSFILE
+
+        fi
+        '
+        
+        
+    done 
+    docker container stop html2pdf_ >/dev/null
+    echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
+    
+fi 
 
 # Debug fin
 
