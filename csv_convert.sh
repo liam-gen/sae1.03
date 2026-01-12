@@ -1,6 +1,7 @@
 #!/bin/bash
-# Copyright Titouan Moquet - 2026 
-echo "$(date) - Lancement script csv_convert.sh" >> LOGS.log
+# Copyrights Titouan Moquet - 2026 
+LOGSFILE='LOGS.log'
+echo "$(date) - Lancement script csv_convert.sh" >> $LOGSFILE
 
 ROUGE="\033[31m"
 RESET="\033[0m"
@@ -48,7 +49,7 @@ then
     # Lancer container docker
 
     docker run -dit --rm --name excel2csv bigpapoo/sae103-excel2csv bash >/dev/null
-    echo "$(date) - Lancement bigpapoo/sae103-excel2csv" >> LOGS.log # redirection de messages pour avoir des logs
+    echo "$(date) - Lancement bigpapoo/sae103-excel2csv" >> $LOGSFILE # redirection de messages pour avoir des logs
     for chemin in input/*.xlsx
     do
         
@@ -63,25 +64,25 @@ then
             nomFichierCsv="${nomFichier%.xlsx}.csv"  # % "supprime de .xlsx"
 
             docker container cp scripts/csv_convert.php excel2csv:"/app/" >/dev/null
-            echo "$(date) - csv_convert.php copié vers /app/" >> LOGS.log
+            echo "$(date) - csv_convert.php copié vers /app/" >> $LOGSFILE
 
             docker container cp scripts/template-sites-dept.php excel2csv:"/app/" >/dev/null
-            echo "$(date) - template-sites-dept.php copié vers /app/" >> LOGS.log
+            echo "$(date) - template-sites-dept.php copié vers /app/" >> $LOGSFILE
 
             docker container cp scripts/template-sites-regions.php excel2csv:"/app/" >/dev/null
-            echo "$(date) - template-sites-regions.php copié vers /app/" >> LOGS.log
+            echo "$(date) - template-sites-regions.php copié vers /app/" >> $LOGSFILE
 
             docker container cp "$chemin" excel2csv:"/app/" >/dev/null
-            echo "$(date) - "$chemin" copié vers /app/" >> LOGS.log
+            echo "$(date) - "$chemin" copié vers /app/" >> $LOGSFILE
 
             docker container cp input/DEPTS excel2csv:"/app/" >/dev/null
-            echo "$(date) - DEPTS copié vers /app/" >> LOGS.log
+            echo "$(date) - DEPTS copié vers /app/" >> $LOGSFILE
 
             docker container cp input/REGIONS excel2csv:"/app/" >/dev/null
-            echo "$(date) - REGIONS copié vers /app/" >> LOGS.log
+            echo "$(date) - REGIONS copié vers /app/" >> $LOGSFILE
 
             docker container cp input/Logo-OFT-horizontal.jpg excel2csv:"/app/" >/dev/null
-            echo "$(date) - Logo-OFT-horizontal.jpg copié vers /app/" >> LOGS.log
+            echo "$(date) - Logo-OFT-horizontal.jpg copié vers /app/" >> $LOGSFILE
             
 
             # docker container exec excel2csv bash -c "touch template-sites-dept.html template-sites-visites.html"
@@ -119,14 +120,14 @@ then
             echo ""
 
             docker container exec -it excel2csv php /app/csv_convert.php "$nomFichierCsv" DEPTS REGIONS
-            echo "$(date) - exec php script" >> LOGS.log
+            echo "$(date) - exec php script" >> $LOGSFILE
 
             docker cp excel2csv:"/app/template-sites-dept.html" utilisables/ >/dev/null
-            echo "$(date) - template-sites-dept.html copié vers utilisables/" >> LOGS.log
+            echo "$(date) - template-sites-dept.html copié vers utilisables/" >> $LOGSFILE
             docker cp excel2csv:"/app/template-sites-visites.html" utilisables/ >/dev/null
-            echo "$(date) - template-sites-visites.html copié vers utilisables/" >> LOGS.log
+            echo "$(date) - template-sites-visites.html copié vers utilisables/" >> $LOGSFILE
             docker cp excel2csv:"/app/template-sites-regions.html" utilisables/ >/dev/null
-            echo "$(date) - template-sites-regions.html copié vers utilisables/" >> LOGS.log
+            echo "$(date) - template-sites-regions.html copié vers utilisables/" >> $LOGSFILE
 
    
             echo ""
@@ -136,7 +137,7 @@ then
         fi
     done 
     docker container stop excel2csv >/dev/null
-    echo "$(date) - Arrêt excel2csv" >> LOGS.log
+    echo "$(date) - Arrêt excel2csv" >> $LOGSFILE
     echo ""
 fi
 
@@ -167,10 +168,10 @@ fi
 if [ "$nbFichierHTML" -gt 0 ]
 then
     docker run -dit --rm --name html2pdf_ bigpapoo/sae103-html2pdf bash >/dev/null
-    echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> LOGS.log
+    echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
 
     docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
-    echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> LOGS.log
+    echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
 
     for pathFichierHTML in utilisables/*.html
     do  
@@ -182,15 +183,15 @@ then
         then
             echo -e "${CYAN} |- $nomFichierPDF $RESET"
             docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
-            echo "$(date) - $fichierHTML copié vers /work/" >> LOGS.log
+            echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
 
             
 
             docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
-            echo "$(date) - exec weasyprint" >> LOGS.log
+            echo "$(date) - exec weasyprint" >> $LOGSFILE
 
             docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
-            echo "$(date) - $nomFichierPDF copié vers output/" >> LOGS.log
+            echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
 
             
         fi
@@ -200,25 +201,25 @@ then
         if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
         then
             mv output/template-sites-dept.pdf output/sites-dept.pdf
-            echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> LOGS.log
+            echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> $LOGSFILE
 
         elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
         then
             mv output/template-sites-visites.pdf output/sites-visites.pdf
-            echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> LOGS.log
+            echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> $LOGSFILE
 
         elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
         then
             mv output/template-sites-regions.pdf output/sites-regions.pdf
-            echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> LOGS.log
+            echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> $LOGSFILE
 
         fi
         echo ""
     done 
     docker container stop html2pdf_ >/dev/null
-    echo "$(date) - Arrêt html2pdf" >> LOGS.log
+    echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
     
 fi 
 echo -e "${GREEN}INFO : Fin traitement fichier xlsx $RESET"
-echo "$(date) - Fin du script csv_convert.sh" >> LOGS.log
+echo "$(date) - Fin du script csv_convert.sh" >> $LOGSFILE
  

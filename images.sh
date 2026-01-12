@@ -1,5 +1,5 @@
 #!/bin/bash
-#copyrigh Liam Charpentier - 2026 
+#copyrights Liam Charpentier - 2026 
 
 # Vérification 
 echo "$(date) - Lancement script images.sh" >> LOGS.log
@@ -30,7 +30,11 @@ then
 
     docker run -dit --name imagick bigpapoo/sae103-imagick >/dev/null
 
+    echo "$(date) - Lancement du container bigpapoo/sae103-imagick " >> LOGS.log
+
     docker container cp scripts/conversionImage.php imagick:"/data/conversionImage.php" >/dev/null
+
+    echo "$(date) - Copie de conversionImage.php vers imagick " >> LOGS.log
 
     for chemin in input/*.png input/*.jpeg input/*.jpg input/*.webp
     do
@@ -44,8 +48,13 @@ then
             echo "Traitement de $nomFichierWebp..."
             
             docker container cp "$chemin" imagick:"/data/$nomFichier" >/dev/null
+            echo "$(date) - Copie du fichier $nomFichier vers imagick " >> LOGS.log
+
             docker container exec -it imagick php /data/conversionImage.php "$nomFichier"
+            echo "$(date) - Conversion de l'image $nomFichier" >> LOGS.log
+
             docker container cp imagick:"/data/$nomFichierWebp" output/"$nomFichierWebp" >/dev/null
+            echo "$(date) - Export de l'image $nomFichierWebp vers le dossier local" >> LOGS.log
 
             echo -e "${VERT}Fichier $nomFichierWebp traité $RESET"
         fi
@@ -53,10 +62,13 @@ then
 
     
 
+    echo "$(date) - Arrêt du container imagick" >> LOGS.log
     docker container stop imagick >/dev/null
     docker container rm imagick >/dev/null
 
     
 fi
+
+echo "$(date) - Fin du traitement des images" >> LOGS.log
 echo -e "\n${VERT}INFO : Fin du traitement des images${RESET}\n"
 echo "$(date) - Fin script images.sh" >> LOGS.log
