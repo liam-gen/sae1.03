@@ -15,15 +15,15 @@ Temps total : XX H (ou YY min)
 
 ### Titouan : 
 - automatisation csv Etape (B-1) & divers correctifs (voir changelog)  
-> 15h  + 2
+> 15h + 2
 
 ### Liam : 
 - Automatisation converssion des images
 > 8h30
 
 ### Flavien :
-- Txt -> HTML -> PDF
-> 5h
+- Txt -> HTML + HTML -> PDF
+> 6h
 
 ### Raphaël :
 

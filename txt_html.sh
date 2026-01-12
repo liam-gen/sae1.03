@@ -16,7 +16,7 @@ if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
     exit 1
 fi
 
-# récupération des nom des images docker via les arguments 
+# Récupération des nom des images docker via les arguments 
 IMAGE_HTML2PDF=$1
 
 # Répertoires
@@ -176,7 +176,6 @@ do
 
 done
 
-# voir done / install docker
 
 nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
 if [ "$nbFichierHTML" -eq 0 ]; then
@@ -215,28 +214,6 @@ then
 
             
         fi
-
-        : '
-
-        # rename des fichiers 
-        echo -e "${GREEN}INFO : Renommage du fichiers $nomFichierPDF $RESET"
-        if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
-        then
-            mv output/template-sites-dept.pdf output/sites-dept.pdf
-            echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> $LOGSFILE
-
-        elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
-        then
-            mv output/template-sites-visites.pdf output/sites-visites.pdf
-            echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> $LOGSFILE
-
-        elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
-        then
-            mv output/template-sites-regions.pdf output/sites-regions.pdf
-            echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> $LOGSFILE
-
-        fi
-        '
         
         
     done 
