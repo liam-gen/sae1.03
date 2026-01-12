@@ -1,5 +1,9 @@
 # Changelog
 
+## 12/01/2026 : works
+remplacement de LOGS.log par une variables
+
+
 ## 11/01/2026 : works
 (titouan)
 Fin traitement fichier sites-dept.pdf et sites-visites.pdf 
