@@ -10,12 +10,12 @@ ROUGE="\033[31m"
 RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
-
+: '
 # Sécurité : seul script.sh peut exécuter le script
 if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
     echo -e "${ROUGE}ERREUR : Ce script ne peut être exécuté que depuis script.sh. $RESET" >&2
     exit 1
-fi
+fi'
 
 # Récupération des nom des images docker via les arguments 
 IMAGE_HTML2PDF=$1
@@ -28,10 +28,10 @@ DIR_LOG="LOGS.log"
 
 # Récupération HTML
 
-nbFichierHTML=$(ls "$DIR_IN/*.html" 2>/dev/null| wc -l)
+nbFichierHTML=$(ls $DIR_IN/*.html 2>/dev/null| wc -l)
 
 if [ "$nbFichierHTML" -eq 0 ]; then
-  echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
+  echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier $DIR_IN/ $RESET"
   exit 0
 fi
 
@@ -46,7 +46,7 @@ then
     docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
     echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
 
-    for pathFichierHTML in "$DIR_IN"/*.html"
+    for pathFichierHTML in "$DIR_IN"/*.html
     do  
         
         fichierHTML="$(basename "$pathFichierHTML")"
@@ -54,7 +54,7 @@ then
     
         if [ -f "$pathFichierHTML" ]
         then
-            echo -e "${CYAN} |- $nomFichierPDF $RESET"
+            echo -e "${CYAN} \|- $nomFichierPDF $RESET"
             docker cp "$DIR_IN/$fichierHTML" html2pdf_:"/work/" >/dev/null
             echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
 
@@ -79,7 +79,10 @@ fi
 
 # Suppression fichiers
 
-rm "$DIR_IN/*.html"
+echo -e "${GREEN}INFO : Supression des HTML dans $DIR_IN $RESET"
+echo "$(date) - Supression des HTML dans $DIR_IN" >> $LOGSFILE
+
+rm $DIR_IN/*.html
 
 
 # Debug fin
