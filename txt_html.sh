@@ -1,7 +1,8 @@
 #!/bin/bash
 # copyrights Flavien Devallan - 2026
+LOGSFILE='LOGS.log'
 
-echo "$(date) - Lancement script txt_html.sh" >> LOGS.log
+echo "$(date) - Lancement script txt_html.sh" >> $LOGSFILE
 # Couleurs
 
 ROUGE="\033[31m"
@@ -9,13 +10,16 @@ RESET="\033[0m"
 CYAN="\033[36m"
 GREEN="\033[32m"
 
-# Répertoires
-
+# Sécurité : seul script.sh peut exécuter le script
 if [ "$CALLED_FROM_SCRIPT1" != "true" ]; then
     echo -e "${ROUGE}ERREUR : Ce script ne peut être exécuté que depuis script.sh. $RESET" >&2
     exit 1
 fi
 
+# récupération des nom des images docker via les arguments 
+IMAGE_HTML2PDF=$1
+
+# Répertoires
 DIR_IN="input"
 DIR_OUT="utilisables"
 
@@ -173,4 +177,4 @@ done
 # Debug fin
 
 echo -e "${GREEN}INFO : Fin traitement fichiers textes $RESET"
-echo "$(date) - Fin script txt_html.sh" >> LOGS.log
+echo "$(date) - Fin script txt_html.sh" >> $LOGSFILE

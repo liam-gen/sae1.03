@@ -15,7 +15,7 @@ Temps total : XX H (ou YY min)
 
 ### Titouan : 
 - automatisation csv Etape (B-1) & divers correctifs (voir changelog)  
-> 15h
+> 15h  + 2
 
 ### Liam : 
 - Automatisation converssion des images

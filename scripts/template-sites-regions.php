@@ -7,13 +7,12 @@
     <style>
         @page {
             size: A4 landscape;
-            margin: 2mm;
+            margin: 5mm;
         }
 
         /* vrais tableaux */
         table {
-            width: 100%;
-            font-size: 9px;
+            font-size: 15px;
             border-collapse: collapse;
         }
 

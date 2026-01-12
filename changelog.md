@@ -2,6 +2,8 @@
 
 ## 12/01/2026 : works
 remplacement de LOGS.log par une variables
+ajout de commentaires
+2/3 changement dans csv_convert.sh et script php
 
 
 ## 11/01/2026 : works

@@ -65,12 +65,12 @@
 <body>
     <?php
         $total = count($donnees);
-        $milieu = ceil($total / 2);
+        $milieu = ceil($total / 2); // arrondie au nb sup
         $donnees_gauche = array_slice($donnees, 0, $milieu);
         $donnees_droite = array_slice($donnees, $milieu);
     ?>
     <header>
-        <h1>Sites de visites par département</h1>
+        <h1><?= htmlspecialchars($TITRE) ?></h1>
         <div class="img-container">
             <img src="Logo-OFT-horizontal.jpg" alt="logo OFT">
         </div>
@@ -107,7 +107,7 @@
                     <thead>
                         <tr>
                             <th>Nom du site</th>
-                            <th>Dépt</th>
+                            <th>Code département</th>
                             <th>Nom du département</th>
                             <th>Visiteurs</th>
                         </tr>

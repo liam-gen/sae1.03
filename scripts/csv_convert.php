@@ -44,8 +44,8 @@ foreach ($lignesDep as $dep) {
 echo "${GREEN}INFO : Création tableau des sites touristiques ... $RESET\n\n";
 
 function normaliserNumeroDep(string $num): string {
-    if (is_numeric($num) && strlen($num) === 1) {
-        return '0' . $num;
+    if (strlen($num) === 1) {
+        return '0' . $num; # écrit '0' puis le chiffre.
     }
     return $num;
 }
@@ -57,7 +57,8 @@ $depParNumero = array_flip($tabDep); // inverse le tableau : Ain 01 -> 01 - Ain
 
 foreach ($lignes as $ligne) {
 
-    $champs = str_getcsv($ligne); 
+    $champs = explode(',', $ligne);
+
 
     if (count($champs) === 3) { // verification si il y a bien 3 colonne dans le csv
 
@@ -80,7 +81,7 @@ foreach ($donnees as $ligne) {
 
 foreach ($tabDep as $nomDep => $numDep) {
 
-    if (!in_array($numDep, $depsPresents)) {
+    if (!in_array($numDep, $depsPresents)) { # si numDep n'es pas dans le tableau depsPresents
         $donnees[] = [
             'nom' => '',
             'departement' => $numDep,
@@ -101,10 +102,10 @@ foreach ($lignesRegions as $ligne) {
         continue;
     }
 
-    $parts = explode('=', $ligne);
+    $parts = explode('=', $ligne); # divise la lignes en 2 nom regions et les numéros
     $region = trim($parts[0]);
 
-    $depsBruts = explode(',', $parts[1]);
+    $depsBruts = explode(',', $parts[1]); # "divise" les numéros
     $departements = [];
 
     foreach ($depsBruts as $dep) {
@@ -141,16 +142,21 @@ foreach ($donnees as $site) {
 # CREATION DES HTML 
 
 //1er sort sites-dept.html
+// fonction trouver sur la doc php, le sort casse les clés donc par sécurité j'utilise usort
 usort($donnees, function ($a, $b) {
     return $a['departement'] <=> $b['departement'];
 });
 
 
 echo "${GREEN}INFO : Creation des HTML ...$RESET\n";
-
 echo "${CYAN} |- sites-dept.html $RESET\n";
-// inspiré d'un poste sur stackoverflow.com
-// récupere le STDOUT du script php pour l'ecrire dans un fichier html 
+$TITRE = "Sites de visites par département";
+
+// Inspiré d'un poste sur stackoverflow.com 
+//https://stackoverflow.com/questions/4401949/whats-the-use-of-ob-start
+//https://www.php.net/manual/en/function.require.php +- même chose que include()
+
+// On récupere le STDOUT du script php pour l'écrire dans un fichier html 
 $file1 = 'template-sites-dept.html';
 ob_start();
 require 'template-sites-dept.php'; 
@@ -167,7 +173,7 @@ usort($donnees, function ($a, $b) {
     }
     return $b['nombre_visiteurs'] <=> $a['nombre_visiteurs'];
 });
-
+$TITRE = "Sites de visites par nombres visiteurs";
 $file2 = 'template-sites-visites.html';
 ob_start();
 require 'template-sites-dept.php'; 
