@@ -2,28 +2,28 @@
 
 ## TABLEAU DE SYNTHESE JEU DE FICHIERS
 
-Temps total : XX H (ou YY min)
+Temps total : 40 H 
 
-| Membre    | %   | Commentaire |
-| --------- | --- | ----------- |
-| Titouan   | 00  |             |
-| Liam      | 00  |             |
-| Flavien   | 00  |             |
-| Raphaël   | 00  |             |
+| Membre    | %     | Commentaire |
+| --------- | ----- | ----------- |
+| Titouan   | 45    |             |
+| Liam      | 37.5  |             |
+| Flavien   | 17.5  |             |
+| Raphaël   | 00    |    ...      |
 
 ## TACHES
 
 ### Titouan : 
 - automatisation csv Etape (B-1) & divers correctifs (voir changelog)  
-> 15h + 2
+> 18H
 
 ### Liam : 
 - Automatisation converssion des images
-> 8h30
+> 15H
 
 ### Flavien :
 - Txt -> HTML + HTML -> PDF
-> 6h30
+> 7H
 
 ### Raphaël :
 

@@ -30,7 +30,7 @@ DIR_LOG="LOGS.log"
 for FICHIER_IN in "$DIR_IN"/*; 
 do
 
-    echo "$(date) - Validation de $FICHIER_IN" >> $DIR_LOG 
+    echo "$(date) - Vérification de $FICHIER_IN" >> $DIR_LOG 
 
     # Conditions de validités
     
@@ -73,7 +73,7 @@ do
     done
 
     # Debug
-
+    echo "$(date) - Fichier $FICHIER_IN : ok " >> $DIR_LOG 
     echo -e "${GREEN}INFO : Traitement de $FICHIER_IN ... $RESET"
     echo "$(date) - Traitement de $FICHIER_IN" >> $DIR_LOG 
 

@@ -15,63 +15,66 @@ $lignesDep = file($nomFichierDep);
 $nomFichierReg = $argv[3];
 $lignesRegions = file($nomFichierReg);
 
-$tabDep = [];
+$tabDep = [];// nomDep => numDep
+
 $numero = 1;
 
 echo "${GREEN}INFO : Création tableau département ... $RESET\n\n";
 
-foreach ($lignesDep as $dep) {
-    $dep = trim($dep);
-    if ($dep === 'Corse-du-Sud') {
-        $tabDep[$dep] = '2A';
+foreach ($lignesDep as $ligne) {
 
-    } else if ($dep === 'Haute-Corse') {
-        $tabDep[$dep] = '2B';
-        $numero = 21; // on reprend la numérotation après la Corse
-
-    } else {
-        // rajout de 0 avant si < 10 pour avoir 
-        // toujours un format avec 2 caractères : 01, 02, ...
-        if ($numero < 10) {
-            $tabDep[$dep] = '0' . $numero;
-        } else {
-            $tabDep[$dep] = (string) $numero;
-        }
-        $numero++;
+    $ligne = trim($ligne);
+    if ($ligne === '') {
+        continue;
     }
-}
 
-echo "${GREEN}INFO : Création tableau des sites touristiques ... $RESET\n\n";
+    $champs = explode(',', $ligne);
 
-function normaliserNumeroDep(string $num): string {
-    if (strlen($num) === 1) {
-        return '0' . $num; # écrit '0' puis le chiffre.
+    // sécurité 
+    if (count($champs) < 2) {
+        continue;
     }
-    return $num;
+
+    $numDep = trim($champs[0]);
+    $nomDep = trim($champs[1]);
+
+    $tabDep[$nomDep] = $numDep;
+    
 }
 
 $lignes = file($nomFichierCsv, FILE_IGNORE_NEW_LINES);
 $donnees = [];
 
-$depParNumero = array_flip($tabDep); // inverse le tableau : Ain 01 -> 01 - Ain 
+echo "${GREEN}INFO : Création tableau des sites touristiques ... $RESET\n\n";
+
+$depParNumero = array_flip($tabDep);
+
+function normaliserNumeroDep(string $num): string {
+    if (strlen($num) === 1) {
+        return '0' . $num;
+    }
+    return $num;
+}
+
 
 foreach ($lignes as $ligne) {
 
     $champs = explode(',', $ligne);
 
+    if (count($champs) === 3) {
 
-    if (count($champs) === 3) { // verification si il y a bien 3 colonne dans le csv
-
-        $numeroDep = normaliserNumeroDep(trim($champs[1]));
+        $numeroDep = $numeroDep = normaliserNumeroDep(trim($champs[1]));
 
         $donnees[] = [
-            'nom' => $champs[0],
+            'nom' => trim($champs[0]),
             'departement' => $numeroDep,
-            'nom_departement' => $depParNumero[$numeroDep] ?? 'Inconnu', // associe le nom du dep avec son numéro 
-            'nombre_visiteurs' => (int) $champs[2]
+            'nom_departement' => $depParNumero[$numeroDep] ?? 'Inconnu',
+            'nombre_visiteurs' => (int) trim($champs[2])
         ];
     }
 }
+
+
 
 $depsPresents = [];
 

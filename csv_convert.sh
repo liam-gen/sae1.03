@@ -67,6 +67,30 @@ then
       # Récupérer fichier avec extension csv
       nomFichierCsv="${nomFichier%.xlsx}.csv"  # % "supprime de .xlsx"
 
+      # ajout des num département dans DEPS
+
+      boucle=1
+      tr ' ' '-' < input/DEPTS >input/tempfile
+      mv input/tempfile utilisables/DEPTS
+      rm utilisables/DEPTS_NUM >/dev/null 2>&1
+      for ligne in $(cat "utilisables/DEPTS"); # récupéré du script de Flavien
+      do 
+        if [ "$ligne" == "Corse-du-Sud" ]; then
+          echo "2A,$ligne" >> utilisables/DEPTS_NUM
+        elif [ "$ligne" == "Haute-Corse" ]; then 
+          echo "2B,$ligne" >> utilisables/DEPTS_NUM
+          boucle=21 
+        else
+          if [ "$boucle" -lt 10 ]; then
+              echo "0$boucle,$ligne" >> utilisables/DEPTS_NUM
+          else
+              echo "$boucle,$ligne" >> utilisables/DEPTS_NUM
+          fi
+          ((boucle++))
+        fi
+
+      done
+
       # echo redirigé vers le fichier logs
 
       docker container cp scripts/csv_convert.php excel2csv:"/app/" >/dev/null
@@ -81,8 +105,8 @@ then
       docker container cp "$chemin" excel2csv:"/app/" >/dev/null
       echo "$(date) - "$chemin" copié vers /app/" >> $LOGSFILE
 
-      docker container cp input/DEPTS excel2csv:"/app/" >/dev/null
-      echo "$(date) - DEPTS copié vers /app/" >> $LOGSFILE
+      docker container cp utilisables/DEPTS_NUM excel2csv:"/app/DEPTS" >/dev/null
+      echo "$(date) - DEPTS_NUM copié vers /app/" >> $LOGSFILE
 
       docker container cp input/REGIONS excel2csv:"/app/" >/dev/null
       echo "$(date) - REGIONS copié vers /app/" >> $LOGSFILE
@@ -97,6 +121,13 @@ then
       echo -e "${GREEN}INFO : Traitement de $nomFichierCsv ...$RESET"
       echo ""
 
+      # si le fichier ne correspond pas au motif, on saute
+      if [[ "input/$nomFichier" != input/sites_touristiques_france*.xlsx ]]; then
+        docker cp excel2csv:"/app/$nomFichierCsv" output/ >/dev/null
+        echo "$(date) - $nomFichierCsv copié vers output/" >> $LOGSFILE
+        continue  # passe au prochain fichier
+      fi
+
       echo "$(date) - suppression du titre et en-tete " >> $LOGSFILE
       
       docker container exec excel2csv bash -c "
@@ -106,6 +137,7 @@ then
         
               if ! echo "$premiere_ligne" | grep -q '*,,'
               then
+
                   tail -n +4 /app/$nomFichierCsv > /app/tmp.csv
                   mv /app/tmp.csv /app/$nomFichierCsv
               fi
@@ -148,85 +180,6 @@ then
   echo ""
 fi
 
-
-# converssion PDF
-# echo -e "${GREEN}INFO : Création des PDF ... $RESET"
-# echo ""
-
-# REQUIRED_PATHS2=(
-#   "input/Logo-OFT-horizontal.jpg"
-# )
-
-# for path in "${REQUIRED_PATHS2[@]}"; do
-#   if [ ! -e "$path" ]; then
-#     echo -e "${ROUGE}ERREUR : le fichier ou répertoire '$path' est manquant, les pdf n'auront pas de logo $RESET"
-#     echo -e "${ROUGE}Le script va continuer dans quelques secondes $RESET"
-#     sleep 4
-#   fi
-# done
-
-
-# nbFichierHTML=$(ls utilisables/*.html 2>/dev/null| wc -l)
-# if [ "$nbFichierHTML" -eq 0 ]; then
-#   echo -e "${CYAN}INFO : aucun fichier HTML (.html) trouvé dans le dossier input/ $RESET"
-#   exit 0
-# fi
-
-# if [ "$nbFichierHTML" -gt 0 ]
-# then
-#     docker run -dit --rm --name html2pdf_ $IMAGE_HTML2PDF bash >/dev/null
-#     echo "$(date) - Lancement de bigpapoo/sae103-html2pdf" >> $LOGSFILE
-
-#     docker cp input/Logo-OFT-horizontal.jpg html2pdf_:"/work/" >/dev/null
-#     echo "$(date) - Logo-OFT-horizontal.jpg copié vers /work/" >> $LOGSFILE
-
-#     for pathFichierHTML in utilisables/*.html
-#     do  
-        
-#         fichierHTML="$(basename "$pathFichierHTML")"
-#         nomFichierPDF="${fichierHTML%.html}.pdf" # % "supprime de .html"
-    
-#         if [ -f "$pathFichierHTML" ]
-#         then
-#             echo -e "${CYAN} |- $nomFichierPDF $RESET"
-#             docker cp utilisables/$fichierHTML html2pdf_:"/work/" >/dev/null
-#             echo "$(date) - $fichierHTML copié vers /work/" >> $LOGSFILE
-
-            
-
-#             docker container exec -it html2pdf_ weasyprint "$fichierHTML" "$nomFichierPDF"
-#             echo "$(date) - exec weasyprint" >> $LOGSFILE
-
-#             docker cp html2pdf_:"/work/$nomFichierPDF" output/ >/dev/null
-#             echo "$(date) - $nomFichierPDF copié vers output/" >> $LOGSFILE
-
-            
-#         fi
-
-#         # rename des fichiers 
-#         echo -e "${GREEN}INFO : Renommage du fichiers $nomFichierPDF $RESET"
-#         if [ "output/$nomFichierPDF" == "output/template-sites-dept.pdf" ]
-#         then
-#             mv output/template-sites-dept.pdf output/sites-dept.pdf
-#             echo "$(date) - rename template-sites-dept.pdf sites-dept.pdf" >> $LOGSFILE
-
-#         elif [ "output/$nomFichierPDF" == "output/template-sites-visites.pdf" ]
-#         then
-#             mv output/template-sites-visites.pdf output/sites-visites.pdf
-#             echo "$(date) - rename template-sites-visites.pdf sites-visites.pdf" >> $LOGSFILE
-
-#         elif [ "output/$nomFichierPDF" == "output/template-sites-regions.pdf" ]
-#         then
-#             mv output/template-sites-regions.pdf output/sites-regions.pdf
-#             echo "$(date) - rename template-sites-regions.pdff sites-regions.pdf" >> $LOGSFILE
-
-#         fi
-#         echo ""
-#     done 
-#     docker container stop html2pdf_ >/dev/null
-#     echo "$(date) - Arrêt html2pdf" >> $LOGSFILE
-    
-#fi 
 echo -e "${GREEN}INFO : Fin traitement fichier xlsx $RESET"
 echo "$(date) - Fin du script csv_convert.sh" >> $LOGSFILE
  
