@@ -23,7 +23,7 @@ Temps total : 40 H
 
 ### Flavien :
 - Txt -> HTML + HTML -> PDF
-> 7H
+> 7H30
 
 ### Raphaël :
 
