@@ -1,5 +1,5 @@
-#!/usr/bin/bash
-# copyrights Liam Charpentier - 2026 
+#!/bin/bash
+#copyrights Liam Charpentier - 2026 
 
 # Vérification 
 echo "$(date) - Lancement script images.sh" >> LOGS.log

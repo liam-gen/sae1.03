@@ -2,11 +2,11 @@
 # copyrights Titouan Moquet & Liam Charpentier - 2026
 
 clear
+LOGSFILE='LOGS.log'
+rm $LOGSFILE > /dev/null 2>&1
+touch $LOGSFILE
 
-rm LOGS.log > /dev/null 2>&1
-touch LOGS.log
-
-echo "$(date) - Lancement du script principal" >> LOGS.log
+echo "$(date) - Lancement du script principal" >> $LOGSFILE
 
 RED="\033[31m"
 RESET="\033[0m"
@@ -14,7 +14,7 @@ CYAN="\033[36m"
 GREEN="\033[32m"
 YELLOW="\033[38;5;220m"
 ORANGE="\033[38;5;208m"
-echo "$(date) - Verification des fichiers et dossiers" >> LOGS.log
+echo "$(date) - Verification des fichiers et dossiers" >> $LOGSFILE
 # sécutité 
 if [ ! -x "csv_convert.sh" ]; then
     chmod +x csv_convert.sh
@@ -79,7 +79,7 @@ for IMAGE in "${IMAGES[@]}"; do
   fi
 done
 
-echo "$(date) - Fin de la vérification" >> LOGS.log
+echo "$(date) - Fin de la vérification" >> $LOGSFILE
 
 # variable pour empêcher le lancement des autres scripts s'ils ne sont pas lancés depuis celui-ci
 export CALLED_FROM_SCRIPT1="true"
@@ -87,21 +87,21 @@ export CALLED_FROM_SCRIPT1="true"
 # Fichier excel
 echo ""
 echo -e "${YELLOW}NOTE : Traitement EXCEL $RESET"
-echo "$(date) - Traitement EXEL" >> LOGS.log
+echo "$(date) - Traitement EXEL" >> $LOGSFILE
 ./csv_convert.sh
 sleep 1
 
 # Images
 echo "" 
 echo -e "${YELLOW}NOTE : Traitement IMAGES $RESET"
-echo "$(date) - Traitement IMAGES" >> LOGS.log
+echo "$(date) - Traitement IMAGES" >> $LOGSFILE
 echo "" 
 ./images.sh
 sleep 1
 
 # Fichier textes
 echo -e "${YELLOW}NOTE : Traitement TEXTES $RESET"
-echo "$(date) - Traitement TEXTES" >> LOGS.log
+echo "$(date) - Traitement TEXTES" >> $LOGSFILE
 echo "" 
 ./txt_html.sh
 
@@ -110,4 +110,4 @@ echo ""
 #fin 
 echo ""
 echo -e "${YELLOW}Fin du programme, Vos fichier sont disponibles dans le dossier : 'output/' $RESET"
-echo "$(date) - Fin du programme principal" >> LOGS.log
+echo "$(date) - Fin du programme principal" >> $LOGSFILE
