@@ -51,10 +51,10 @@ Sinon si vous êtes sur les pc de l'IUT de Lannion :
 
 ## Informations
 
-
-
 Projet sous licence MIT — libre d’utilisation, modification et redistribution.
 
 ## Crédits
 
-<img src="https://contrib.rocks/image?repo=liam-gen/sae1.03">
+<a href="https://github.com/github.com/liam-gen/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=github.com/liam-gen/" />
+</a>
