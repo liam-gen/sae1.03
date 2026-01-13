@@ -55,6 +55,8 @@ Projet sous licence MIT — libre d’utilisation, modification et redistributio
 
 ## Crédits
 
-<a href="https://github.com/github.com/liam-gen/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=github.com/liam-gen/" />
+<a href="https://github.com/liam-gen/sae1.03/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=liam-gen/sae1.03" />
 </a>
+
+Made with [contrib.rocks](https://contrib.rocks).
