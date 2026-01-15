@@ -1,5 +1,9 @@
-<img src="https://img.shields.io/github/contributors/liam-gen/sae1.03?style=for-the-badge">
+<div>
+   
 <img src="https://img.shields.io/badge/LICENCE-MIT-0?style=for-the-badge">
+<img src="https://img.shields.io/github/contributors/liam-gen/sae1.03?style=for-the-badge">
+</div>
+
 
 # SAE 1.03 - Installation d'un poste pour le développement 
 
@@ -13,8 +17,18 @@ Ce projet a pour objectif d’automatiser le traitement des fichiers pour le sit
 
 ## Technologies utilisées
 
-<img src="https://skillicons.dev/icons?i=php,bash,docker,github,markdown,vscode">
+<!--<img src="https://skillicons.dev/icons?i=php,bash,docker,github,markdown,vscode">-->
+<div style=<div align="center">
 
+   ![Bash Script](https://img.shields.io/badge/bash_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
+   ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+   ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)
+   ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+   ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+   ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+  
+   
+</div>
 ## Installation
 
 1. Clonez ce repository
@@ -59,4 +73,4 @@ Projet sous licence MIT — libre d’utilisation, modification et redistributio
   <img src="https://contrib.rocks/image?repo=liam-gen/sae1.03" />
 </a>
 
-Made with [contrib.rocks](https://contrib.rocks).
+<!--Made with [contrib.rocks](https://contrib.rocks).-->
