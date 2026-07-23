@@ -64,12 +64,13 @@ Sinon si vous êtes sur les pc de l'IUT de Lannion :
 
 ## Informations
 
-Projet sous licence MIT — libre d’utilisation, modification et redistribution.
+Projet sous licence MIT - libre d’utilisation, modification et redistribution.
+Pour plus d'informations, consultez la [licence](LICENCE)
 
 ## Crédits
 
 <a href="https://github.com/liam-gen/sae1.03/graphs/contributors">
+  <!--Made with [contrib.rocks](https://contrib.rocks).-->
   <img src="https://contrib.rocks/image?repo=liam-gen/sae1.03" />
 </a>
 
-<!--Made with [contrib.rocks](https://contrib.rocks).-->
