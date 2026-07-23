@@ -32,7 +32,7 @@ Ce projet a pour objectif d’automatiser le traitement des fichiers pour le sit
 
 1. Clonez ce repository
    ```bash
-   git clone https://github.com/liam-gen/sae1.05.git
+   git clone https://github.com/liam-gen/sae1.03.git
    ```
 2. Donnez les permissions d'executer le script
    ```bash
