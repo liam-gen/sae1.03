@@ -65,7 +65,7 @@ Sinon si vous êtes sur les pc de l'IUT de Lannion :
 ## Informations
 
 Projet sous licence MIT - libre d’utilisation, modification et redistribution.
-Pour plus d'informations, consultez la [licence](LICENCE)
+Pour plus d'informations, consultez la [licence](LICENSE)
 
 ## Crédits
 
